@@ -181,6 +181,21 @@ class FLButtonModule extends FLBuilderModule {
 			return ' role="button"';
 		}
 	}
+
+	public function use_default_border() {
+		if ( ! class_exists( 'FLBuilderGlobalStyles' ) ) {
+			return true;
+		}
+		return empty( ( FLBuilderGlobalStyles::get_settings() )->button_border['style'] ) || empty( ( FLBuilderGlobalStyles::get_settings() )->button_border['style'] );
+	}
+
+	public function use_default_border_hover() {
+		if ( ! class_exists( 'FLBuilderGlobalStyles' ) ) {
+			return true;
+		}
+		return empty( ( FLBuilderGlobalStyles::get_settings() )->button_border_hover_color );
+	}
+
 }
 
 /**
