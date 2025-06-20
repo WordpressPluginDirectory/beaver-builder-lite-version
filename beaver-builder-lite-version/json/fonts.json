@@ -84,6 +84,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Agu Display": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Aguafina Script": {
     "variants": ["regular"],
     "fallback": "cursive"
@@ -274,6 +279,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Alumni Sans SC": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Amarante": {
     "variants": ["regular"],
     "fallback": "sans-serif"
@@ -317,6 +327,16 @@
   "Anaheim": {
     "variants": ["regular", "500", "600", "700", "800"],
     "fallback": "sans-serif"
+  }
+}, {
+  "Ancizar Sans": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Ancizar Serif": {
+    "variants": ["300", "regular", "500", "600", "700", "800", "900", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "serif"
   }
 }, {
   "Andada Pro": {
@@ -569,6 +589,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Asta Sans": {
+    "variants": ["300", "regular", "500", "600", "700", "800"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Astloch": {
     "variants": ["regular", "700"],
     "fallback": "sans-serif"
@@ -576,7 +601,7 @@
 }, {
   "Asul": {
     "variants": ["regular", "700"],
-    "fallback": "sans-serif"
+    "fallback": "serif"
   }
 }, {
   "Athiti": {
@@ -586,6 +611,16 @@
 }, {
   "Atkinson Hyperlegible": {
     "variants": ["regular", "italic", "700", "700italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Atkinson Hyperlegible Mono": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "800", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Atkinson Hyperlegible Next": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "800", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -692,6 +727,11 @@
   "Bad Script": {
     "variants": ["regular"],
     "fallback": "cursive"
+  }
+}, {
+  "Badeen Display": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
   }
 }, {
   "Bagel Fat One": {
@@ -820,12 +860,12 @@
   }
 }, {
   "Baskervville": {
-    "variants": ["regular", "italic"],
+    "variants": ["regular", "500", "600", "700", "italic", "500italic", "600italic", "700italic"],
     "fallback": "serif"
   }
 }, {
   "Baskervville SC": {
-    "variants": ["regular"],
+    "variants": ["regular", "500", "600", "700"],
     "fallback": "serif"
   }
 }, {
@@ -934,32 +974,17 @@
     "fallback": "serif"
   }
 }, {
-  "Big Shoulders Display": {
+  "Big Shoulders": {
     "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
     "fallback": "sans-serif"
   }
 }, {
-  "Big Shoulders Inline Display": {
+  "Big Shoulders Inline": {
     "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
     "fallback": "sans-serif"
   }
 }, {
-  "Big Shoulders Inline Text": {
-    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
-    "fallback": "sans-serif"
-  }
-}, {
-  "Big Shoulders Stencil Display": {
-    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
-    "fallback": "sans-serif"
-  }
-}, {
-  "Big Shoulders Stencil Text": {
-    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
-    "fallback": "sans-serif"
-  }
-}, {
-  "Big Shoulders Text": {
+  "Big Shoulders Stencil": {
     "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
     "fallback": "sans-serif"
   }
@@ -1064,6 +1089,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Boldonse": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Bona Nova": {
     "variants": ["regular", "italic", "700"],
     "fallback": "serif"
@@ -1155,7 +1185,7 @@
   }
 }, {
   "Buenard": {
-    "variants": ["regular", "700"],
+    "variants": ["regular", "500", "600", "700"],
     "fallback": "serif"
   }
 }, {
@@ -1204,6 +1234,11 @@
     "fallback": "cursive"
   }
 }, {
+  "Bytesized": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Cabin": {
     "variants": ["regular", "500", "600", "700", "italic", "500italic", "600italic", "700italic"],
     "fallback": "sans-serif"
@@ -1241,6 +1276,11 @@
 }, {
   "Cairo Play": {
     "variants": ["200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Cal Sans": {
+    "variants": ["regular"],
     "fallback": "sans-serif"
   }
 }, {
@@ -1336,6 +1376,16 @@
 }, {
   "Carter One": {
     "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Cascadia Code": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "200italic", "300italic", "italic", "500italic", "600italic", "700italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Cascadia Mono": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "200italic", "300italic", "italic", "500italic", "600italic", "700italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -1474,6 +1524,11 @@
     "fallback": "cursive"
   }
 }, {
+  "Chiron Sung HK": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "800", "900", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "serif"
+  }
+}, {
   "Chivo": {
     "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "sans-serif"
@@ -1559,6 +1614,11 @@
     "fallback": "cursive"
   }
 }, {
+  "Comic Relief": {
+    "variants": ["regular", "700"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Coming Soon": {
     "variants": ["regular"],
     "fallback": "cursive"
@@ -1609,6 +1669,11 @@
     "fallback": "serif"
   }
 }, {
+  "Coral Pixels": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Corben": {
     "variants": ["regular", "700"],
     "fallback": "sans-serif"
@@ -1625,12 +1690,12 @@
   }
 }, {
   "Cormorant Garamond": {
-    "variants": ["300", "300italic", "regular", "italic", "500", "500italic", "600", "600italic", "700", "700italic"],
+    "variants": ["300", "regular", "500", "600", "700", "300italic", "italic", "500italic", "600italic", "700italic"],
     "fallback": "serif"
   }
 }, {
   "Cormorant Infant": {
-    "variants": ["300", "300italic", "regular", "italic", "500", "500italic", "600", "600italic", "700", "700italic"],
+    "variants": ["300", "regular", "500", "600", "700", "300italic", "italic", "500italic", "600italic", "700italic"],
     "fallback": "serif"
   }
 }, {
@@ -1914,6 +1979,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Doto": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Dr Sugiyama": {
     "variants": ["regular"],
     "fallback": "cursive"
@@ -1964,6 +2034,11 @@
     "fallback": "serif"
   }
 }, {
+  "Edu AU VIC WA NT Arrows": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "cursive"
+  }
+}, {
   "Edu AU VIC WA NT Dots": {
     "variants": ["regular", "500", "600", "700"],
     "fallback": "cursive"
@@ -1979,7 +2054,22 @@
     "fallback": "cursive"
   }
 }, {
+  "Edu AU VIC WA NT Pre": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "cursive"
+  }
+}, {
+  "Edu NSW ACT Cursive": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "cursive"
+  }
+}, {
   "Edu NSW ACT Foundation": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "cursive"
+  }
+}, {
+  "Edu NSW ACT Hand Pre": {
     "variants": ["regular", "500", "600", "700"],
     "fallback": "cursive"
   }
@@ -1989,7 +2079,17 @@
     "fallback": "cursive"
   }
 }, {
+  "Edu QLD Hand": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "cursive"
+  }
+}, {
   "Edu SA Beginner": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "cursive"
+  }
+}, {
+  "Edu SA Hand": {
     "variants": ["regular", "500", "600", "700"],
     "fallback": "cursive"
   }
@@ -2000,6 +2100,16 @@
   }
 }, {
   "Edu VIC WA NT Beginner": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "cursive"
+  }
+}, {
+  "Edu VIC WA NT Hand": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "cursive"
+  }
+}, {
+  "Edu VIC WA NT Hand Pre": {
     "variants": ["regular", "500", "600", "700"],
     "fallback": "cursive"
   }
@@ -2114,6 +2224,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Exile": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Exo": {
     "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "sans-serif"
@@ -2132,6 +2247,11 @@
   "Explora": {
     "variants": ["regular"],
     "fallback": "cursive"
+  }
+}, {
+  "Faculty Glyphic": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
   }
 }, {
   "Fahkwang": {
@@ -2384,6 +2504,16 @@
     "fallback": "cursive"
   }
 }, {
+  "Funnel Display": {
+    "variants": ["300", "regular", "500", "600", "700", "800"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Funnel Sans": {
+    "variants": ["300", "regular", "500", "600", "700", "800", "300italic", "italic", "500italic", "600italic", "700italic", "800italic"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Fustat": {
     "variants": ["200", "300", "regular", "500", "600", "700", "800"],
     "fallback": "sans-serif"
@@ -2469,6 +2599,16 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Geist": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Geist Mono": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "monospace"
+  }
+}, {
   "Gelasio": {
     "variants": ["regular", "500", "600", "700", "italic", "500italic", "600italic", "700italic"],
     "fallback": "serif"
@@ -2525,6 +2665,11 @@
   }
 }, {
   "Gideon Roman": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Gidole": {
     "variants": ["regular"],
     "fallback": "sans-serif"
   }
@@ -2716,7 +2861,7 @@
 }, {
   "Gurajada": {
     "variants": ["regular"],
-    "fallback": "serif"
+    "fallback": "sans-serif"
   }
 }, {
   "Gwendolyn": {
@@ -2775,7 +2920,7 @@
   }
 }, {
   "Hanuman": {
-    "variants": ["100", "300", "regular", "700", "900"],
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
     "fallback": "serif"
   }
 }, {
@@ -2849,6 +2994,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Hind Mysuru": {
+    "variants": ["300", "regular", "500", "600", "700"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Hind Siliguri": {
     "variants": ["300", "regular", "500", "600", "700"],
     "fallback": "sans-serif"
@@ -2879,7 +3029,22 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Host Grotesk": {
+    "variants": ["300", "regular", "500", "600", "700", "800", "300italic", "italic", "500italic", "600italic", "700italic", "800italic"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Hubballi": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Hubot Sans": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "800", "900", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Huninn": {
     "variants": ["regular"],
     "fallback": "sans-serif"
   }
@@ -2895,7 +3060,7 @@
   }
 }, {
   "IBM Plex Sans": {
-    "variants": ["100", "100italic", "200", "200italic", "300", "300italic", "regular", "italic", "500", "500italic", "600", "600italic", "700", "700italic"],
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -2994,6 +3159,11 @@
     "fallback": "serif"
   }
 }, {
+  "Iansui": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Ibarra Real Nova": {
     "variants": ["regular", "500", "600", "700", "italic", "500italic", "600italic", "700italic"],
     "fallback": "serif"
@@ -3025,7 +3195,7 @@
   }
 }, {
   "Inclusive Sans": {
-    "variants": ["regular", "italic"],
+    "variants": ["300", "regular", "500", "600", "700", "300italic", "italic", "500italic", "600italic", "700italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -3111,7 +3281,7 @@
 }, {
   "Italiana": {
     "variants": ["regular"],
-    "fallback": "serif"
+    "fallback": "sans-serif"
   }
 }, {
   "Italianno": {
@@ -3374,6 +3544,11 @@
     "fallback": "serif"
   }
 }, {
+  "Kanchenjunga": {
+    "variants": ["regular", "500", "600", "700"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Kanit": {
     "variants": ["100", "100italic", "200", "200italic", "300", "300italic", "regular", "italic", "500", "500italic", "600", "600italic", "700", "700italic", "800", "800italic", "900", "900italic"],
     "fallback": "sans-serif"
@@ -3384,6 +3559,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Kapakana": {
+    "variants": ["300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Karantina": {
     "variants": ["300", "regular", "700"],
     "fallback": "sans-serif"
@@ -3391,6 +3571,16 @@
 }, {
   "Karla": {
     "variants": ["200", "300", "regular", "500", "600", "700", "800", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Karla Tamil Inclined": {
+    "variants": ["regular", "700"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Karla Tamil Upright": {
+    "variants": ["regular", "700"],
     "fallback": "sans-serif"
   }
 }, {
@@ -3594,6 +3784,11 @@
     "fallback": "serif"
   }
 }, {
+  "LXGW Marker Gothic": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "LXGW WenKai Mono TC": {
     "variants": ["300", "regular", "700"],
     "fallback": "monospace"
@@ -3621,7 +3816,7 @@
 }, {
   "Laila": {
     "variants": ["300", "regular", "500", "600", "700"],
-    "fallback": "sans-serif"
+    "fallback": "serif"
   }
 }, {
   "Lakki Reddy": {
@@ -3837,6 +4032,11 @@
   "Lisu Bosa": {
     "variants": ["200", "200italic", "300", "300italic", "regular", "italic", "500", "500italic", "600", "600italic", "700", "700italic", "800", "800italic", "900", "900italic"],
     "fallback": "serif"
+  }
+}, {
+  "Liter": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
   }
 }, {
   "Literata": {
@@ -4134,6 +4334,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Matangi": {
+    "variants": ["300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Mate": {
     "variants": ["regular", "italic"],
     "fallback": "serif"
@@ -4171,6 +4376,11 @@
 }, {
   "Material Icons Two Tone": {
     "variants": ["regular"],
+    "fallback": "monospace"
+  }
+}, {
+  "Material Symbols": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700"],
     "fallback": "monospace"
   }
 }, {
@@ -4245,7 +4455,7 @@
   }
 }, {
   "Merriweather": {
-    "variants": ["300", "300italic", "regular", "italic", "700", "700italic", "900", "900italic"],
+    "variants": ["300", "regular", "500", "600", "700", "800", "900", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "serif"
   }
 }, {
@@ -4320,7 +4530,7 @@
   }
 }, {
   "Miriam Libre": {
-    "variants": ["regular", "700"],
+    "variants": ["regular", "500", "600", "700"],
     "fallback": "sans-serif"
   }
 }, {
@@ -4389,6 +4599,11 @@
     "fallback": "cursive"
   }
 }, {
+  "Mona Sans": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "800", "900", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Monda": {
     "variants": ["regular", "500", "600", "700"],
     "fallback": "sans-serif"
@@ -4397,6 +4612,11 @@
   "Monofett": {
     "variants": ["regular"],
     "fallback": "monospace"
+  }
+}, {
+  "Monomakh": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
   }
 }, {
   "Monomaniac One": {
@@ -4444,8 +4664,8 @@
     "fallback": "sans-serif"
   }
 }, {
-  "Montserrat Subrayada": {
-    "variants": ["regular", "700"],
+  "Montserrat Underline": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -4606,7 +4826,12 @@
 }, {
   "Narnoor": {
     "variants": ["regular", "500", "600", "700", "800"],
-    "fallback": "serif"
+    "fallback": "sans-serif"
+  }
+}, {
+  "National Park": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "800"],
+    "fallback": "sans-serif"
   }
 }, {
   "Neonderthaw": {
@@ -4675,7 +4900,7 @@
   }
 }, {
   "Nokora": {
-    "variants": ["100", "300", "regular", "700", "900"],
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
     "fallback": "sans-serif"
   }
 }, {
@@ -5309,7 +5534,7 @@
     "fallback": "sans-serif"
   }
 }, {
-  "Noto Sans Phags Pa": {
+  "Noto Sans PhagsPa": {
     "variants": ["regular"],
     "fallback": "sans-serif"
   }
@@ -5569,6 +5794,11 @@
     "fallback": "serif"
   }
 }, {
+  "Noto Serif Dives Akuru": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Noto Serif Dogra": {
     "variants": ["regular"],
     "fallback": "serif"
@@ -5606,6 +5836,11 @@
 }, {
   "Noto Serif Hebrew": {
     "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "serif"
+  }
+}, {
+  "Noto Serif Hentaigana": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "800", "900"],
     "fallback": "serif"
   }
 }, {
@@ -5716,6 +5951,11 @@
 }, {
   "Noto Serif Tibetan": {
     "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "serif"
+  }
+}, {
+  "Noto Serif Todhri": {
+    "variants": ["regular"],
     "fallback": "serif"
   }
 }, {
@@ -6034,6 +6274,11 @@
     "fallback": "cursive"
   }
 }, {
+  "Parkinsans": {
+    "variants": ["300", "regular", "500", "600", "700", "800"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Passero One": {
     "variants": ["regular"],
     "fallback": "sans-serif"
@@ -6119,6 +6364,11 @@
     "fallback": "serif"
   }
 }, {
+  "Phetsarath": {
+    "variants": ["regular", "700"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Philosopher": {
     "variants": ["regular", "italic", "700", "700italic"],
     "fallback": "sans-serif"
@@ -6194,8 +6444,33 @@
     "fallback": "cursive"
   }
 }, {
+  "Playpen Sans Arabic": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playpen Sans Deva": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playpen Sans Hebrew": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playpen Sans Thai": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite AR": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite AR Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6204,8 +6479,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite AT Guides": {
+    "variants": ["regular", "italic"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite AU NSW": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite AU NSW Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6214,8 +6499,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite AU QLD Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite AU SA": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite AU SA Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6224,8 +6519,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite AU TAS Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite AU VIC": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite AU VIC Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6234,8 +6539,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite BE VLG Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite BE WAL": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite BE WAL Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6244,8 +6559,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite BR Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite CA": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite CA Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6254,8 +6579,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite CL Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite CO": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite CO Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6264,8 +6599,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite CU Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite CZ": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite CZ Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6274,8 +6619,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite DE Grund Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite DE LA": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite DE LA Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6284,8 +6639,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite DE SAS Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite DE VA": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite DE VA Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6294,8 +6659,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite DK Loopet Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite DK Uloopet": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite DK Uloopet Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6309,8 +6684,23 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite ES Deco Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite ES Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite FR Moderne": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite FR Moderne Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6319,8 +6709,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite FR Trad Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite GB J": {
     "variants": ["100", "200", "300", "regular", "100italic", "200italic", "300italic", "italic"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite GB J Guides": {
+    "variants": ["regular", "italic"],
     "fallback": "cursive"
   }
 }, {
@@ -6329,8 +6729,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite GB S Guides": {
+    "variants": ["regular", "italic"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite HR": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite HR Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6339,8 +6749,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite HR Lijeva Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite HU": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite HU Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6349,8 +6769,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite ID Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite IE": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite IE Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6359,8 +6789,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite IN Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite IS": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite IS Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6369,8 +6809,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite IT Moderna Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite IT Trad": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite IT Trad Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6379,8 +6829,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite MX Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite NG Modern": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite NG Modern Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6389,8 +6849,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite NL Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite NO": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite NO Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6399,8 +6869,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite NZ Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite PE": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite PE Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6409,8 +6889,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite PL Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite PT": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite PT Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6419,8 +6909,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite RO Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite SK": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite SK Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6429,8 +6929,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite TZ Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite US Modern": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite US Modern Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6439,8 +6949,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite US Trad Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Playwrite VN": {
     "variants": ["100", "200", "300", "regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Playwrite VN Guides": {
+    "variants": ["regular"],
     "fallback": "cursive"
   }
 }, {
@@ -6449,8 +6969,18 @@
     "fallback": "cursive"
   }
 }, {
+  "Playwrite ZA Guides": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
   "Plus Jakarta Sans": {
     "variants": ["200", "300", "regular", "500", "600", "700", "800", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Pochaevsk": {
+    "variants": ["regular"],
     "fallback": "sans-serif"
   }
 }, {
@@ -6485,6 +7015,16 @@
   }
 }, {
   "Pompiere": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Ponnala": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Ponomar": {
     "variants": ["regular"],
     "fallback": "sans-serif"
   }
@@ -6890,7 +7430,7 @@
   }
 }, {
   "Roboto": {
-    "variants": ["100", "100italic", "300", "300italic", "regular", "italic", "500", "500italic", "700", "700italic", "900", "900italic"],
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -7239,6 +7779,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Sansation": {
+    "variants": ["300", "300italic", "regular", "italic", "700", "700italic"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Sansita": {
     "variants": ["regular", "italic", "700", "700italic", "800", "800italic", "900", "900italic"],
     "fallback": "sans-serif"
@@ -7277,6 +7822,11 @@
   "Satisfy": {
     "variants": ["regular"],
     "fallback": "cursive"
+  }
+}, {
+  "Savate": {
+    "variants": ["200", "300", "regular", "500", "600", "700", "800", "900", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
   }
 }, {
   "Sawarabi Gothic": {
@@ -7372,6 +7922,11 @@
   "Shadows Into Light Two": {
     "variants": ["regular"],
     "fallback": "cursive"
+  }
+}, {
+  "Shafarik": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
   }
 }, {
   "Shalimar": {
@@ -7639,6 +8194,11 @@
     "fallback": "serif"
   }
 }, {
+  "Sour Gummy": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Source Code Pro": {
     "variants": ["200", "300", "regular", "500", "600", "700", "800", "900", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "monospace"
@@ -7665,6 +8225,21 @@
   }
 }, {
   "Special Elite": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Special Gothic": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Special Gothic Condensed One": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Special Gothic Expanded One": {
     "variants": ["regular"],
     "fallback": "sans-serif"
   }
@@ -7879,6 +8454,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Tagesschrift": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Tai Heritage Pro": {
     "variants": ["regular", "700"],
     "fallback": "serif"
@@ -8079,6 +8659,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Triodion": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Trirong": {
     "variants": ["100", "100italic", "200", "200italic", "300", "300italic", "regular", "italic", "500", "500italic", "600", "600italic", "700", "700italic", "800", "800italic", "900", "900italic"],
     "fallback": "serif"
@@ -8111,6 +8696,11 @@
 }, {
   "Tsukimi Rounded": {
     "variants": ["300", "regular", "500", "600", "700"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Tuffy": {
+    "variants": ["regular", "italic", "700", "700italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -8324,6 +8914,21 @@
     "fallback": "cursive"
   }
 }, {
+  "WDXL Lubrifont JP N": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "WDXL Lubrifont SC": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "WDXL Lubrifont TC": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Waiting for the Sunrise": {
     "variants": ["regular"],
     "fallback": "cursive"
@@ -8377,6 +8982,16 @@
   "WindSong": {
     "variants": ["regular", "500"],
     "fallback": "cursive"
+  }
+}, {
+  "Winky Rough": {
+    "variants": ["300", "regular", "500", "600", "700", "800", "900", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Winky Sans": {
+    "variants": ["300", "regular", "500", "600", "700", "800", "900", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
   }
 }, {
   "Wire One": {
@@ -8555,7 +9170,7 @@
   }
 }, {
   "Zain": {
-    "variants": ["200", "300", "regular", "700", "800", "900"],
+    "variants": ["200", "300", "300italic", "regular", "italic", "700", "800", "900"],
     "fallback": "sans-serif"
   }
 }, {

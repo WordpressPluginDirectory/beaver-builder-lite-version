@@ -20,6 +20,7 @@
 		this.currentBrowserWidth = $( window ).width();
 		this.postId              = settings.postId;
 		this.mobileStacked       = settings.mobileStacked;
+		this.submenuIcon         = settings.submenuIcon;
 
 		// initialize the menu
 		this._initMenu();
@@ -181,7 +182,7 @@
 		 */
 		_setupSubmenu: function() {
 			$( this.wrapperClass + ' ul.sub-menu' ).each( function(){
-				$( this ).closest( 'li' ).attr( 'aria-haspopup', 'true' );
+				$( this ).closest( 'li' ).find('a').first().attr( 'aria-haspopup', 'true' );
 			});
 		},
 
@@ -310,11 +311,10 @@
 					$subMenuParents = $( e.target ).parents( '.sub-menu' ),
 					$activeParents 	= $( e.target ).parents( '.fl-has-submenu.fl-active' );
 
-				if( !$subMenu.is(':visible') || $(e.target).hasClass('fl-menu-toggle')
+				if( ( !$subMenu.is(':visible') && 'none' === this.submenuIcon ) || $(e.target).hasClass('fl-menu-toggle')
 					|| ($subMenu.is(':visible') && (typeof $href === 'undefined' || $href == '#')) ){
 					e.preventDefault();
-				}
-				else {
+				} else {
 					e.stopPropagation();
 					window.location.href = $href;
 					return;
@@ -518,9 +518,19 @@
 					}
 					else {
 						var targetMenu = null;
-						
+
 						if ( self.mobileBelowRow ) {
-							targetMenu = $( this ).closest( '.fl-col' ).next( '.fl-menu-mobile-clone' );
+							var $closestCol = $( this ).parents( '.fl-col, .fl-module-box' ),
+								$closestColGroup = $closestCol.length ? $closestCol.parent( '.fl-col-group' ) : null,
+								targetMenu  = $closestCol.length ? $closestCol.last().next( '.fl-menu-mobile-clone' ) : null;
+
+							if ( $closestColGroup.length ) {
+								if ( $closestColGroup.hasClass( 'fl-col-group-responsive-reversed' ) ) {
+									$closestColGroup.find( '.fl-menu-mobile-clone' ).css( 'order', -1 );
+								} else if ( $closestColGroup ) {
+									$closestColGroup.find( '.fl-menu-mobile-clone' ).css( 'order', 2 );
+								}
+							}
 						} else {
 							targetMenu = $( this ).closest( '.fl-menu' ).find( 'ul.menu' );
 						}
@@ -608,7 +618,7 @@
 		 * @return boolean
 		 */
 		_isMobileBelowRowEnabled: function() {
-			return this.mobileBelowRow && $( this.nodeClass ).closest( '.fl-col' ).length;
+			return this.mobileBelowRow && ( $( this.nodeClass ).parents( '.fl-col, .fl-module-box' ).length );
 		},
 
 		/**
@@ -626,7 +636,7 @@
 
 			var module = $( this.nodeClass ),
 				clone  = null,
-				col    = module.closest( '.fl-col' );
+				col    = module.parents( '.fl-col, .fl-module-box' ).last();
 
 			if ( module.length < 1 ) {
 				return;

@@ -37,8 +37,8 @@ function fl_maybe_fix_unserialize( $data ) {
  *
  * @since 1.10.6
  */
-function fl_maybe_fix_unserialize_callback( $match ) {
-	return ( strlen( $match[2] ) == $match[1] ) ? $match[0] : 's:' . strlen( $match[2] ) . ':"' . $match[2] . '";';
+function fl_maybe_fix_unserialize_callback( $matches ) {
+	return ( strlen( $matches[2] ) == $matches[1] ) ? $matches[0] : 's:' . strlen( $matches[2] ) . ':"' . $matches[2] . '";';
 }
 
 /**
@@ -120,7 +120,7 @@ function fl_theme_builder_archive_post_grid( $layouts ) {
 /**
  * Helper function that queries the themer layouts in archive pages.
  */
-function fl_theme_builder_archive_layouts( $query, $return = '' ) {
+function fl_theme_builder_archive_layouts( $query, $returns = '' ) {
 	if ( ! $query ) {
 		return;
 	}
@@ -220,8 +220,8 @@ function fl_theme_builder_archive_layouts( $query, $return = '' ) {
 		'query'    => new WP_Query( $args ),
 	);
 
-	if ( ! empty( $return ) && isset( $layouts_data[ $return ] ) ) {
-		return $layouts_data[ $return ];
+	if ( ! empty( $returns ) && isset( $layouts_data[ $returns ] ) ) {
+		return $layouts_data[ $returns ];
 	} else {
 		return $layouts_data;
 	}
@@ -284,7 +284,7 @@ function fl_ordered_post_grid( $data ) {
 
 	// Order nodes by position
 	foreach ( $parent_nodes as $type => $parent_node ) {
-		uasort($parent_node, function( $a, $b ) {
+		uasort($parent_node, function ( $a, $b ) {
 			return $a['position'] - $b['position'];
 		});
 
@@ -294,7 +294,7 @@ function fl_ordered_post_grid( $data ) {
 			}
 
 			// Order post grids
-			uasort($parent['node'], function( $a, $b ) {
+			uasort($parent['node'], function ( $a, $b ) {
 				return $a['position'] - $b['position'];
 			});
 			$parent_node[ $parent_id ] = $parent;
@@ -365,4 +365,25 @@ function fl_theme_builder_has_post_grid() {
 	}
 
 	return false;
+}
+
+/**
+ * Global Styles polyfill for LITE
+ */
+if ( ! class_exists( 'FLBuilderGlobalStyles' ) && defined( 'FL_BUILDER_LITE' ) && true === FL_BUILDER_LITE ) {
+	class FLBuilderGlobalStyles {
+		public static function get_settings() {
+			return (object) [
+				'colors'            => [],
+				'button_color'      => '',
+				'button_background' => '',
+			];
+		}
+		public static function get_theme_json_js_config() {
+			return [ 'color' => [ 'palette' => [] ] ];
+		}
+		public static function generate_global_colors_css() {
+			return '';
+		}
+	}
 }

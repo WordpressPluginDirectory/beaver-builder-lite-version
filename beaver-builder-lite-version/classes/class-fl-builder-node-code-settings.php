@@ -22,6 +22,7 @@ final class FLBuilderNodeCodeSettings {
 		add_action( 'wp_enqueue_scripts', __CLASS__ . '::enqueue_builder_scripts' );
 
 		add_filter( 'fl_builder_register_settings_form', __CLASS__ . '::filter_settings_fields', 10, 2 );
+
 		if ( ! isset( $_GET['safemode'] ) ) {
 			add_filter( 'fl_builder_render_css', __CLASS__ . '::filter_layout_css', 10, 2 );
 			add_filter( 'fl_builder_render_js', __CLASS__ . '::filter_layout_js', 10, 2 );
@@ -38,7 +39,7 @@ final class FLBuilderNodeCodeSettings {
 
 
 	public static function filter_settings_fields( $form, $slug ) {
-		if ( 'row' === $slug || 'col' === $slug && ( current_user_can( 'delete_others_posts' ) || FLBuilderModel::user_has_unfiltered_html() ) ) {
+		if ( ( 'row' === $slug || 'col' === $slug ) && ( current_user_can( 'delete_others_posts' ) || FLBuilderModel::user_has_unfiltered_html() ) ) {
 			$form['tabs']['advanced']['sections']['bb_css_code'] = self::get_css_field_config();
 			$form['tabs']['advanced']['sections']['bb_js_code']  = self::get_js_field_config();
 		}
