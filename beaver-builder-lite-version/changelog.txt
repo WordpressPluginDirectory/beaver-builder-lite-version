@@ -1,3 +1,53 @@
+<h4>2.9.4.1 - 11/25/2025</h4>
+<strong>There is a companion BB Themer release for this version. Please update to Themer 1.5.2.1.</strong>
+<p><strong>Bug Fixes</strong></p>
+<ul>
+	<li>Security: Added better capability checking to ensure only proper users can view attachment data for media attached to posts that are private, draft, or password-protected (#4604)</li>
+	<li>Security: Added better capability checking for disable layout action (#4623)</li>
+	<li>Security: Only Administrator and Editor roles will be checked by default for Builder Access and Unrestricted Editing in User Access settings</li>
+	<li>Security: Ensure users have Builder Access and Unrestricted editing capabilities to allow them to add or delete color picker presets</li>
+	<li>Rank Math: Fixed integration to ensure Focus Keyword feature still works on posts/pages where BB is used (#4599)</li>
+	<li>Button Group Module: Fixed PHP warnings (#4489)</li>
+	<li>Loop Module: Fixed PHP warnings if post has no taxonomy (#4642)</li>
+	<li>Loop Module: Fixed field connection logic for post grid loop (#4646)</li>
+	<li>Global Settings: Fixed Row default max width not being responsive (#4634)</li>	
+</ul>
+
+<h4>2.9.4 - 09/24/2025</h4>
+<p><strong>Enhancements</strong></p>
+<ul>
+	<li>Color Picker: Fix scrolling issues when the color picker position is over the settings panel (#4284)</li>
+	<li>Separator Module: Color and style fields are now responsive< (#4245)/li>
+	<li>Subscribe Module: Increase group limit from default of 100 to 1000 for MailerLite (#4249)</li>
+	<li>WooCommerce: Added option to order by price in the loop (#4071)</li>
+	<li>Subscribe Module: Added notices to console for 403 nonce issues to help with debugging failures (#4280)</li>
+</ul>
+
+<p><strong>Bug Fixes</strong></p>
+<ul>
+	<li>Fixed settings sections with the same key causing others without headings to collapse (#4436)</li>
+	<li>Global Styles: Fixed reset not working if it hasn't been saved first (#3551)</li>
+	<li>Fixed conflict when both WP Job Manager and Media Library Organizer plugins are active (#4259)</li>
+	<li>Fixed styling of link field checkboxes in module blocks (#4236)</li>
+	<li>Slideshow: Fixed smugmug source not working (#4367)</li>
+	<li>Typography field: Fixed default font preview overriding theme font (#4448)</li>
+	<li>Button Group Module: Fixed lightbox content rendering wrong when multiple buttons are used (#4472)</li>
+	<li>Animations: Fixed above the fold animations not starting hidden (#4464)</li>
+	<li>Menu Module: Fixed below row responsive menu position not working properly with equal height columns (#4145)</li>
+</ul>
+
+<p><strong>Developer</strong></p>
+<ul>
+	<li>Loop Module: Added method to access the query object in the module data repeater (#4458)</li>
+</ul>
+
+<h4>2.9.3.2 - 09/18/2025</h4>
+<p><strong>Hotfix</strong></p>
+<ul>
+	<li>Fixed fatal error when TEC Pro is active (#4471)</li>
+	<li>Fixed integration with Popup Maker when using version 1.21+ (#4469)</li>
+</ul>
+
 <h4>2.9.3.1 - 08/26/2025</h4>
 <p><strong>Hotfix</strong></p>
 <ul>

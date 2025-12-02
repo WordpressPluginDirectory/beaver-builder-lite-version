@@ -53,19 +53,19 @@ class FLControls {
 		register_rest_route( 'fl-controls/v1', '/color_presets/', array(
 			'methods'             => WP_REST_Server::CREATABLE,
 			'callback'            => __CLASS__ . '::set_color_presets',
-			'permission_callback' => __CLASS__ . '::check_permission',
+			'permission_callback' => __CLASS__ . '::check_write_permission',
 		) );
 
 		register_rest_route( 'fl-controls/v1', '/color_presets/', array(
 			'methods'             => WP_REST_Server::DELETABLE,
 			'callback'            => __CLASS__ . '::delete_color_presets',
-			'permission_callback' => __CLASS__ . '::check_permission',
+			'permission_callback' => __CLASS__ . '::check_write_permission',
 		) );
 
 		register_rest_route( 'fl-controls/v1', '/background_presets/', array(
 			'methods'             => WP_REST_Server::CREATABLE,
 			'callback'            => __CLASS__ . '::set_background_presets',
-			'permission_callback' => __CLASS__ . '::check_permission',
+			'permission_callback' => __CLASS__ . '::check_write_permission',
 		) );
 
 		register_rest_route( 'fl-controls/v1', '/attachment_sizes/', array(
@@ -220,6 +220,14 @@ class FLControls {
 		$filename = wp_basename( $url );
 		$sizes    = [];
 
+		if ( ! current_user_can( 'read_private_posts' ) ) {
+			$post    = get_post( $id );
+			$user_id = get_current_user_id();
+			if ( $post->post_author !== $user_id ) {
+				return new WP_REST_Response( null, 403, [] );
+			}
+		}
+
 		if ( $meta ) {
 			$sizes    = $meta['sizes'];
 			$basename = dirname( wp_get_attachment_url( $id ) );
@@ -245,12 +253,21 @@ class FLControls {
 	}
 
 	/**
-	 * Checks permission.
+	 * Checks permission for read access.
 	 *
 	 * @return boolean
 	 */
 	static public function check_permission() {
 		return FLBuilderUserAccess::current_user_can( 'builder_access' );
+	}
+
+	/**
+	 * Checks permission for write access.
+	 *
+	 * @return boolean
+	 */
+	static public function check_write_permission() {
+		return ( FLBuilderUserAccess::current_user_can( 'unrestricted_editing' ) && FLBuilderUserAccess::current_user_can( 'builder_access' ) );
 	}
 }
 

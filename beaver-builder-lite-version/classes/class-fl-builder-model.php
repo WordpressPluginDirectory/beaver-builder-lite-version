@@ -195,9 +195,18 @@ final class FLBuilderModel {
 		add_filter( 'heartbeat_received', __CLASS__ . '::lock_post', 10, 2 );
 		add_filter( 'fl_builder_register_settings_form', __CLASS__ . '::filter_row_settings_for_resize', 10, 2 );
 		add_filter( 'wp_revisions_to_keep', __CLASS__ . '::limit_revisions', 10, 2 );
+		add_action( 'fl_builder_after_render_row', array( __CLASS__, 'animation_opacity' ), 10, 2 );
+		add_action( 'fl_builder_after_render_module', array( __CLASS__, 'animation_opacity' ), 10, 2 );
+		add_action( 'fl_builder_after_render_col', array( __CLASS__, 'animation_opacity' ), 10, 2 );
 
 		/* Core Templates */
 		self::register_core_templates();
+	}
+
+	public static function animation_opacity( $node, $extra = false ) {
+		if ( ! self::is_builder_active() && isset( $node->settings->animation ) && is_array( $node->settings->animation ) && ! empty( $node->settings->animation['style'] ) ) {
+			printf( '<style>.fl-node-%s.fl-animation:not(.fl-animated){opacity:0}</style>', $node->node );
+		}
 	}
 
 	/**
@@ -814,7 +823,12 @@ final class FLBuilderModel {
 	 */
 	static public function disable() {
 		if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'fl-enable-editor' ) ) {
-			update_post_meta( self::get_post_id(), '_fl_builder_enabled', false );
+			$post_id = self::get_post_id();
+			$user_id = get_current_user_id();
+			$post    = get_post( $post_id );
+			if ( current_user_can( 'edit_others_posts' ) || ( $post->post_author === $user_id ) ) {
+				update_post_meta( $post_id, '_fl_builder_enabled', false );
+			}
 		}
 		exit;
 	}
@@ -1197,9 +1211,11 @@ final class FLBuilderModel {
 	static public function get_node( $node_id = null, $status = null ) {
 		if ( is_object( $node_id ) ) {
 			$node = $node_id;
-		} else {
+		} else if ( null !== $node_id ) {
 			$data = self::get_layout_data( $status );
 			$node = isset( $data[ $node_id ] ) ? $data[ $node_id ] : null;
+		} else {
+			$node = false;
 		}
 
 		if ( $node && ! empty( $node->settings ) ) {
@@ -1462,11 +1478,7 @@ final class FLBuilderModel {
 	 * @return array
 	 */
 	static public function get_categorized_nodes() {
-		if ( self::is_post_user_template( 'module' ) ) {
-			$root_module                            = self::get_node_template_root( 'module' );
-			$nodes                                  = self::get_categorized_child_nodes( $root_module );
-			$nodes['modules'][ $root_module->node ] = self::get_module( $root_module );
-		} elseif ( self::is_post_user_template( 'column' ) ) {
+		if ( self::is_post_user_template( 'column' ) ) {
 			$root_col                            = self::get_node_template_root( 'column' );
 			$nodes                               = self::get_categorized_child_nodes( $root_col );
 			$nodes['columns'][ $root_col->node ] = $root_col;
@@ -4125,10 +4137,10 @@ final class FLBuilderModel {
 			if ( in_array( $class, $exclude ) ) {
 				continue;
 			}
-			$widget->class            = $class;
+			$widget->class                     = $class;
 			$widget->isWidget         = true; // @codingStandardsIgnoreLine
-			$widget->fl_category      = __( 'WordPress Widgets', 'fl-builder' );
-			$widgets[ $widget->name ] = $widget;
+			$widget->fl_category               = __( 'WordPress Widgets', 'fl-builder' );
+			$widgets[ (string) $widget->name ] = $widget;
 		}
 
 		ksort( $widgets );
@@ -5811,7 +5823,9 @@ final class FLBuilderModel {
 
 			$type = ( is_wp_error( $terms ) || 0 === count( $terms ) ) ? 'layout' : $terms[0]->slug;
 
-			self::$node_template_types[ $template_id ] = $type;
+			if ( null !== $template_id ) {
+				self::$node_template_types[ $template_id ] = $type;
+			}
 
 			return $type;
 		}

@@ -3768,11 +3768,11 @@ final class FLBuilder {
 		}
 
 		// Global node css.
-		FLBuilderCSS::rule( array(
-			'selector' => '.fl-row-fixed-width',
-			'props'    => array(
-				'max-width' => $global_settings->row_width . $global_settings->row_width_unit,
-			),
+		FLBuilderCSS::responsive_rule( array(
+			'settings'     => $global_settings,
+			'setting_name' => 'row_width',
+			'selector'     => '.fl-row-fixed-width',
+			'prop'         => 'max-width',
 		) );
 
 		FLBuilderCSS::dimension_field_rule( array(

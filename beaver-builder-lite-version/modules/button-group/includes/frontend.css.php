@@ -502,16 +502,16 @@ for ( $i = 0; $i < count( $settings->items ); $i++ ) :
 	// Border
 	if ( ! empty( $settings->items[ $i ]->button_item_border->style ) ) {
 		if ( empty( $settings->items[ $i ]->button_item_border->width->top ) ) {
-			$settings->items[ $i ]->button_item_border->width->top = $settings->border['width']['top'];
+			$settings->items[ $i ]->button_item_border->width->top = $settings->border['width']['top'] ?? null;
 		}
 		if ( empty( $settings->items[ $i ]->button_item_border->width->bottom ) ) {
-			$settings->items[ $i ]->button_item_border->width->bottom = $settings->border['width']['bottom'];
+			$settings->items[ $i ]->button_item_border->width->bottom = $settings->border['width']['bottom'] ?? null;
 		}
 		if ( empty( $settings->items[ $i ]->button_item_border->width->left ) ) {
-			$settings->items[ $i ]->button_item_border->width->left = $settings->border['width']['left'];
+			$settings->items[ $i ]->button_item_border->width->left = $settings->border['width']['left'] ?? null;
 		}
 		if ( empty( $settings->items[ $i ]->button_item_border->width->right ) ) {
-			$settings->items[ $i ]->button_item_border->width->right = $settings->border['width']['right'];
+			$settings->items[ $i ]->button_item_border->width->right = $settings->border['width']['right'] ?? null;
 		}
 		FLBuilderCSS::border_field_rule( array(
 			'settings'     => $settings->items[ $i ],

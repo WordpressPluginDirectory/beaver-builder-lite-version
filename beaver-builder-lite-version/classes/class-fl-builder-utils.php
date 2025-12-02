@@ -371,6 +371,9 @@ final class FLBuilderUtils {
 	 * @since 2.6
 	 */
 	public static function formatbytes( $size, $precision = 2 ) {
+		if ( 0 === $size ) {
+			return 0;
+		}
 		$base     = log( $size, 1024 );
 		$suffixes = array( '', 'K', 'M', 'G', 'T' );
 
