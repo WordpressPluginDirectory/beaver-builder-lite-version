@@ -5498,6 +5498,15 @@ final class FLBuilderModel {
 		$published        = self::get_layout_data( 'published', $original_post_id );
 		$draft            = self::get_layout_data( 'draft', $original_post_id );
 
+		$orig_post = get_post( $original_post_id );
+		$new_post  = get_post( $new_post_id );
+
+		if ( $orig_post->post_author !== $new_post->post_author ) {
+			wp_die( false, false, array( 'response' => 403 ) );
+		}
+
+		check_admin_referer( 'fl_wpml_duplicate_clicked' );
+
 		$response = array(
 			'enabled'    => false,
 			'has_layout' => false,

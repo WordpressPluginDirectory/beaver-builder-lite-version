@@ -1,6 +1,13 @@
+<h4>2.9.4.2 - 12/22/2025</h4>
+<p><strong>Hotfix</strong></p>
+<ul>
+	<li>Security: Add capability check on the 'duplicate_wpml_layout' function (#4636)</li>
+	<li>Security: Sanitize auto suggest action function (#4659)</li>
+</ul>
+
 <h4>2.9.4.1 - 11/25/2025</h4>
 <strong>There is a companion BB Themer release for this version. Please update to Themer 1.5.2.1.</strong>
-<p><strong>Bug Fixes</strong></p>
+<p><strong>Hotfix</strong></p>
 <ul>
 	<li>Security: Added better capability checking to ensure only proper users can view attachment data for media attached to posts that are private, draft, or password-protected (#4604)</li>
 	<li>Security: Added better capability checking for disable layout action (#4623)</li>
