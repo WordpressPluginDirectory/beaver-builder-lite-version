@@ -67,15 +67,15 @@
 /* Content
 ----------------------------------------------------------- */
 
-.settings_page_fl-builder-settings {
+body[class*="settings_page_fl-builder"] {
 	background: #fff;
 }
 
-.settings_page_fl-builder-settings a {
+body[class*="settings_page_fl-builder"]a {
   color: #EE521F;
   text-decoration: none;
 }
-.settings_page_fl-builder-settings a:hover {
+body[class*="settings_page_fl-builder"]a:hover {
   color: #1a7497;
 }
 
@@ -136,6 +136,10 @@ div#fl-license-form .themer h3 {
 .fl-settings-single-install .fl-settings-form-content {
 	display: block;
 }
+#fl-versions-form .name {
+	display: inline-block;
+	width: 100px;
+}
 
 /* Multi-Select
 ----------------------------------------------------------- */
@@ -157,8 +161,8 @@ body .ms-options-wrap > .ms-options {
 	padding: 5px;
 }
 body .ms-options-wrap > .ms-options .ms-selectall {
-	box-shadow: none !important;
 	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
 	text-transform: none;
 }
 body .ms-options-wrap > .ms-options li {
@@ -285,7 +289,7 @@ body .ms-options-wrap > .ms-options > ul input[type="checkbox"] {
 	display: inline-block;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
 }
-.fl-welcome-page-content a.fl-button {
+.fl-welcome-page-content .fl-button:is(a, button) {
   background: #ee521f;
   color: #fff;
   border-radius: 4px;
@@ -297,20 +301,20 @@ body .ms-options-wrap > .ms-options > ul input[type="checkbox"] {
   width: 160px;
   transition: 0.2s ease-in-out;
 }
-.fl-welcome-page-content a.fl-button.centered {
+.fl-welcome-page-content .fl-button:is(a, button).centered {
   margin: 30px auto 10px auto;
 }
-.fl-welcome-page-content a.fl-button:hover {
+.fl-welcome-page-content .fl-button:is(a, button):hover {
   background: #197596;
 }
 
 @media(min-width:1540px) {
-  .settings_page_fl-builder-settings #wpbody {
+  body[class*="settings_page_fl-builder"] #wpbody {
     background: url(../img/shape-top_right.png) no-repeat top right;
     background-size: 314px;
 	min-height: 100vh;
   }
-  .settings_page_fl-builder-settings #wpbody:before {
+  body[class*="settings_page_fl-builder"] #wpbody:before {
     position: absolute;
     content: "";
     width: 260px;
@@ -320,7 +324,7 @@ body .ms-options-wrap > .ms-options > ul input[type="checkbox"] {
     left: -20px;
     bottom: 0;
   }
-  .settings_page_fl-builder-settings #wpbody:after {
+  body[class*="settings_page_fl-builder"] #wpbody:after {
     position: absolute;
     content: "";
     width: 256px;
@@ -609,6 +613,7 @@ body .ms-options-wrap > .ms-options > ul input[type="checkbox"] {
 .toggleWrapper input.mobileToggle + label {
   position: relative;
   display: inline-block;
+	-webkit-user-select: none;
   user-select: none;
   -moz-transition: 0.4s ease;
   -o-transition: 0.4s ease;

@@ -1,65 +1,14 @@
 <?php
-$link_padding            = array(
-	'padding-top'    => ! empty( $settings->link_padding_top ) ? $settings->link_padding_top . $settings->link_padding_unit : '0',
-	'padding-right'  => ! empty( $settings->link_padding_right ) ? $settings->link_padding_right . $settings->link_padding_unit : '0',
-	'padding-bottom' => ! empty( $settings->link_padding_bottom ) ? $settings->link_padding_bottom . $settings->link_padding_unit : '0',
-	'padding-left'   => ! empty( $settings->link_padding_left ) ? $settings->link_padding_left . $settings->link_padding_unit : '0',
-);
-$link_padding_large      = array();
-$link_padding_medium     = array();
-$link_padding_responsive = array();
-
-if ( ! empty( $settings->link_padding_top_large ) ) {
-	$link_padding_large['padding-top'] = $settings->link_padding_top_large . $settings->link_padding_large_unit;
-}
-if ( ! empty( $settings->link_padding_right_large ) ) {
-	$link_padding_large['padding-right'] = $settings->link_padding_right_large . $settings->link_padding_large_unit;
-}
-if ( ! empty( $settings->link_padding_bottom_large ) ) {
-	$link_padding_large['padding-bottom'] = $settings->link_padding_bottom_large . $settings->link_padding_large_unit;
-}
-if ( ! empty( $settings->link_padding_left_large ) ) {
-	$link_padding_large['padding-left'] = $settings->link_padding_left_large . $settings->link_padding_large_unit;
-}
-
-if ( ! empty( $settings->link_padding_top_medium ) ) {
-	$link_padding_medium['padding-top'] = $settings->link_padding_top_medium . $settings->link_padding_medium_unit;
-}
-if ( ! empty( $settings->link_padding_right_medium ) ) {
-	$link_padding_medium['padding-right'] = $settings->link_padding_right_medium . $settings->link_padding_medium_unit;
-}
-if ( ! empty( $settings->link_padding_bottom_medium ) ) {
-	$link_padding_medium['padding-bottom'] = $settings->link_padding_bottom_medium . $settings->link_padding_medium_unit;
-}
-if ( ! empty( $settings->link_padding_left_medium ) ) {
-	$link_padding_medium['padding-left'] = $settings->link_padding_left_medium . $settings->link_padding_medium_unit;
-}
-
-if ( ! empty( $settings->link_padding_top_responsive ) ) {
-	$link_padding_responsive['padding-top'] = $settings->link_padding_top_responsive . $settings->link_padding_responsive_unit;
-}
-if ( ! empty( $settings->link_padding_right_responsive ) ) {
-	$link_padding_responsive['padding-right'] = $settings->link_padding_right_responsive . $settings->link_padding_responsive_unit;
-}
-if ( ! empty( $settings->link_padding_bottom_responsive ) ) {
-	$link_padding_responsive['padding-bottom'] = $settings->link_padding_bottom_responsive . $settings->link_padding_responsive_unit;
-}
-if ( ! empty( $settings->link_padding_left_responsive ) ) {
-	$link_padding_responsive['padding-left'] = $settings->link_padding_left_responsive . $settings->link_padding_responsive_unit;
-}
-
 $toggle_spacing       = $settings->link_padding_right > 10 ? $settings->link_padding_right : 10;
 $toggle_padding       = ! empty( $settings->link_padding_right ) ? $settings->link_padding_right : 0;
 $toggle_width         = ( $toggle_padding + 14 );
 $toggle_height        = ceil( ( ( $toggle_padding * 2 ) + 14 ) * 0.65 );
 $submenu_selector     = ".fl-node-$id .fl-menu .sub-menu";
 $submenu_container    = $submenu_selector . ' .fl-has-submenu-container';
-$sub_hover_selectors  = "$submenu_selector > li > a:hover,";
-$sub_hover_selectors .= "$submenu_selector > li > a:focus,";
-$sub_hover_selectors .= "$submenu_selector > li > .fl-has-submenu-container:hover > a,";
-$sub_hover_selectors .= "$submenu_selector > li > .fl-has-submenu-container:focus > a,";
+$sub_hover_selectors  = "$submenu_selector > li > a:is(:hover, :focus),";
+$sub_hover_selectors .= "$submenu_selector > li > .fl-has-submenu-container:is(:hover, :focus) > *,";
 $sub_hover_selectors .= "$submenu_selector > li.current-menu-item > a,";
-$sub_hover_selectors .= "$submenu_selector > li.current-menu-item > .fl-has-submenu-container > a";
+$sub_hover_selectors .= "$submenu_selector > li.current-menu-item > .fl-has-submenu-container > *";
 
 /**
  * Overall menu styling
@@ -71,15 +20,12 @@ FLBuilderCSS::typography_field_rule( array(
 ) );
 
 ?>
+<?php if ( ! empty( $settings->menu_bg_color ) ) : ?>
 .fl-node-<?php echo $id; ?> .fl-menu .menu {
-	<?php
-
-	if ( ! empty( $settings->menu_bg_color ) ) {
-		echo 'background-color: ' . FLBuilderColor::hex_or_rgb( $settings->menu_bg_color ) . ';';
-	}
-
-	?>
+	background-color : <?php echo FLBuilderColor::hex_or_rgb( $settings->menu_bg_color ); ?>;
 }
+<?php endif; ?>
+
 <?php
 
 /**
@@ -106,39 +52,18 @@ if ( 'horizontal' === $settings->menu_layout ) {
 /**
  * Links
  */
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .menu a",
-	'media'    => 'default',
-	'props'    => $link_padding,
-) );
-
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .menu a",
-	'media'    => 'large',
-	'enabled'  => ! empty( $link_padding_large ),
-	'props'    => $link_padding_large,
-) );
-
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .menu a",
-	'media'    => 'medium',
-	'enabled'  => ! empty( $link_padding_medium ),
-	'props'    => $link_padding_medium,
-) );
-
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .menu a",
-	'media'    => 'responsive',
-	'enabled'  => ! empty( $link_padding_responsive ),
-	'props'    => $link_padding_responsive,
-) );
+foreach ( $module->extract_paddings() as $media => $paddings ) {
+	FLBuilderCSS::rule( array(
+		'selector' => ".fl-node-$id .menu a",
+		'media'    => $media,
+		'enabled'  => ! empty( $paddings ),
+		'props'    => $paddings,
+	) );
+}
 ?>
 
 <?php if ( ! empty( $settings->link_color ) ) : ?>
-.fl-builder-content .fl-node-<?php echo $id; ?> .menu > li > a,
-.fl-builder-content .fl-node-<?php echo $id; ?> .menu > li > .fl-has-submenu-container > a,
-.fl-builder-content .fl-node-<?php echo $id; ?> .sub-menu > li > a,
-.fl-builder-content .fl-node-<?php echo $id; ?> .sub-menu > li > .fl-has-submenu-container > a{
+.fl-node-<?php echo $id; ?> .menu-item a {
 	color: <?php echo FLBuilderColor::hex_or_rgb( $settings->link_color ); ?>;
 	<?php if ( ! empty( $settings->link_bg_color ) ) : ?>
 		background-color: #<?php echo $settings->link_bg_color; ?>;
@@ -147,14 +72,12 @@ FLBuilderCSS::rule( array(
 
 	<?php if ( isset( $settings->link_color ) ) : ?>
 
-		<?php if ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && in_array( $settings->submenu_hover_toggle, array( 'arrows', 'none' ) ) ) || ( 'accordion' == $settings->menu_layout && 'arrows' == $settings->submenu_click_toggle ) ) : ?>
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-arrows .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-none .fl-menu-toggle:before {
-			border-color: <?php echo FLBuilderColor::hex_or_rgb( $settings->link_color ); ?>;
-		}
-	<?php elseif ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && 'plus' == $settings->submenu_hover_toggle ) || ( 'accordion' == $settings->menu_layout && 'plus' == $settings->submenu_click_toggle ) ) : ?>
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-plus .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-plus .fl-menu-toggle:after{
+		<?php if ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && 'none' !== $settings->submenu_hover_toggle ) || 'accordion' == $settings->menu_layout ) : ?>
+		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-<?php echo $settings->submenu_hover_toggle; ?> .fl-menu-toggle:before
+			<?php if ( 'plus' == $settings->submenu_hover_toggle ) : ?>
+			, .fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-<?php echo $settings->submenu_hover_toggle; ?> .fl-menu-toggle:after
+			<?php endif; ?>
+		{
 			border-color: <?php echo FLBuilderColor::hex_or_rgb( $settings->link_color ); ?>;
 		}
 		<?php endif; ?>
@@ -168,18 +91,9 @@ endif;
  */
 if ( ! empty( $settings->link_hover_bg_color ) || $settings->link_hover_color ) :
 	?>
-.fl-node-<?php echo $id; ?> .menu > li > a:hover,
-.fl-node-<?php echo $id; ?> .menu > li > a:focus,
-.fl-node-<?php echo $id; ?> .menu > li > .fl-has-submenu-container:hover > a,
-.fl-node-<?php echo $id; ?> .menu > li > .fl-has-submenu-container.focus > a,
-.fl-node-<?php echo $id; ?> .menu > li.current-menu-item > a,
-.fl-node-<?php echo $id; ?> .menu > li.current-menu-item > .fl-has-submenu-container > a,
-.fl-node-<?php echo $id; ?> .sub-menu > li > a:hover,
-.fl-node-<?php echo $id; ?> .sub-menu > li > a:focus,
-.fl-node-<?php echo $id; ?> .sub-menu > li > .fl-has-submenu-container:hover > a,
-.fl-node-<?php echo $id; ?> .sub-menu > li > .fl-has-submenu-container.focus > a,
-.fl-node-<?php echo $id; ?> .sub-menu > li.current-menu-item > a,
-.fl-node-<?php echo $id; ?> .sub-menu > li.current-menu-item > .fl-has-submenu-container > a{
+.fl-node-<?php echo $id; ?> .menu-item :is(*:focus, a:hover, .fl-has-submenu-container:hover > *),
+.fl-node-<?php echo $id; ?> .current-menu-item > a,
+.fl-node-<?php echo $id; ?> .current-menu-item > .fl-has-submenu-container > * {
 	<?php
 	if ( ! empty( $settings->link_hover_bg_color ) ) {
 		echo 'background-color: ' . FLBuilderColor::hex_or_rgb( $settings->link_hover_bg_color ) . ';';
@@ -192,28 +106,19 @@ if ( ! empty( $settings->link_hover_bg_color ) || $settings->link_hover_color ) 
 <?php endif ?>
 
 <?php if ( ! empty( $settings->link_hover_color ) ) : ?>
-		<?php if ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && in_array( $settings->submenu_hover_toggle, array( 'arrows', 'none' ) ) ) || ( 'accordion' == $settings->menu_layout && 'arrows' == $settings->submenu_click_toggle ) ) : ?>
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-arrows .fl-has-submenu-container:hover > .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-arrows .fl-has-submenu-container.focus > .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-arrows li.current-menu-item >.fl-has-submenu-container > .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-none .fl-has-submenu-container:hover > .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-none .fl-has-submenu-container.focus > .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-none li.current-menu-item >.fl-has-submenu-container > .fl-menu-toggle:before{
+	<?php if ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && 'none' !== $settings->submenu_hover_toggle ) || 'accordion' == $settings->menu_layout ) : ?>
+		.fl-node-<?php echo $id; ?> .fl-toggle-<?php echo $settings->submenu_hover_toggle; ?> :is(.fl-menu-toggle:focus, .fl-has-submenu-container:hover > .fl-menu-toggle):before,
+		.fl-node-<?php echo $id; ?> .fl-toggle-<?php echo $settings->submenu_hover_toggle; ?> .current-menu-item > .fl-has-submenu-container > .fl-menu-toggle:before
+		<?php if ( 'plus' == $settings->submenu_hover_toggle ) : ?>
+			, .fl-node-<?php echo $id; ?> .fl-toggle-<?php echo $settings->submenu_hover_toggle; ?> :is(.fl-menu-toggle:focus, .fl-has-submenu-container:hover > .fl-menu-toggle):after,
+			.fl-node-<?php echo $id; ?> .fl-toggle-<?php echo $settings->submenu_hover_toggle; ?> .current-menu-item > .fl-has-submenu-container > .fl-menu-toggle:after
+		<?php endif; ?>
+		{
 			border-color: <?php echo FLBuilderColor::hex_or_rgb( $settings->link_hover_color ); ?>;
 		}
-	<?php elseif ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && 'plus' == $settings->submenu_hover_toggle ) || ( 'accordion' == $settings->menu_layout && 'plus' == $settings->submenu_click_toggle ) ) : ?>
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-plus .fl-has-submenu-container:hover > .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-plus .fl-has-submenu-container.focus > .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-plus li.current-menu-item > .fl-has-submenu-container > .fl-menu-toggle:before,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-plus .fl-has-submenu-container:hover > .fl-menu-toggle:after,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-plus .fl-has-submenu-container.focus > .fl-menu-toggle:after,
-		.fl-node-<?php echo $id; ?> .fl-menu .fl-toggle-plus li.current-menu-item > .fl-has-submenu-container > .fl-menu-toggle:after{
-			border-color: <?php echo FLBuilderColor::hex_or_rgb( $settings->link_hover_color ); ?>;
-		}
-	<?php endif; ?>
-
+	<?php	endif; ?>
 	<?php
-endif;
+	endif;
 
 /**
  * Overall submenu styling
@@ -257,14 +162,13 @@ FLBuilderCSS::typography_field_rule( array(
  */
 if ( isset( $settings->submenu_link_color ) && ! empty( $settings->submenu_link_color ) ) :
 	?>
-	.fl-node-<?php echo $id; ?> .fl-menu .sub-menu > li > a,
-	.fl-node-<?php echo $id; ?> .fl-menu .sub-menu > li > .fl-has-submenu-container > a {
+	.fl-node-<?php echo $id; ?> .fl-menu .sub-menu a {
 		color: <?php echo FLBuilderColor::hex_or_rgb( $settings->submenu_link_color ); ?>;
 	}
 
 	<?php
 	FLBuilderCSS::rule( array(
-		'selector' => "$submenu_container .fl-menu-toggle:before, $submenu_selector .fl-toggle-plus .fl-menu-toggle:after",
+		'selector' => "$submenu_container .fl-menu-toggle:before, $submenu_selector .fl-menu-toggle:after",
 		'props'    => array(
 			'border-color' => $settings->submenu_link_color,
 		),
@@ -378,7 +282,9 @@ if ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && 
 			-ms-transform: translateX( -5px ) rotate( 45deg );
 				transform: translateX( -5px ) rotate( 45deg );
 	}
-	.fl-node-<?php echo $id; ?> .fl-menu .fl-has-submenu.fl-active > .fl-has-submenu-container .fl-menu-toggle{
+	.fl-node-<?php echo $id; ?> .fl-menu .fl-has-submenu.focus > .fl-has-submenu-container > .fl-menu-toggle,
+	.fl-node-<?php echo $id; ?> .fl-menu .fl-has-submenu.fl-active > .fl-has-submenu-container .fl-menu-toggle,
+	.fl-node-<?php echo $id; ?> .fl-menu:not(.no-hover) .fl-has-submenu:hover > .fl-has-submenu-container > .fl-menu-toggle{
 		-webkit-transform: rotate( -180deg );
 			-ms-transform: rotate( -180deg );
 				transform: rotate( -180deg );
@@ -416,7 +322,9 @@ elseif ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) )
 			-ms-transform: translate( -50%, -50% );
 				transform: translate( -50%, -50% );
 	}
-	.fl-node-<?php echo $id; ?> .fl-menu .fl-has-submenu.fl-active > .fl-has-submenu-container .fl-menu-toggle:after{
+	.fl-node-<?php echo $id; ?> .fl-menu .fl-has-submenu.focus > .fl-has-submenu-container > .fl-menu-toggle:after,
+	.fl-node-<?php echo $id; ?> .fl-menu .fl-has-submenu.fl-active > .fl-has-submenu-container .fl-menu-toggle:after,
+	.fl-node-<?php echo $id; ?> .fl-menu:not(.no-hover) .fl-has-submenu:hover > .fl-has-submenu-container > .fl-menu-toggle:after{
 		display: none;
 	}
 	<?php
@@ -425,26 +333,23 @@ endif;
 /**
  * Submenu toggle
  */
-if ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && in_array( $settings->submenu_hover_toggle, array( 'arrows', 'none' ) ) ) || ( 'accordion' == $settings->menu_layout && 'arrows' == $settings->submenu_click_toggle ) ) :
+if ( 1 === $module->version ) :
 	?>
+	<?php if ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && in_array( $settings->submenu_hover_toggle, array( 'arrows', 'none' ) ) ) || ( 'accordion' == $settings->menu_layout && 'arrows' == $settings->submenu_click_toggle ) ) : ?>
 	.fl-node-<?php echo $id; ?> .fl-menu-<?php echo $settings->menu_layout; ?>.fl-toggle-arrows .fl-has-submenu-container a{
 		padding-right: <?php echo $toggle_width; ?>px;
 	}
-	.fl-node-<?php echo $id; ?> .fl-menu-<?php echo $settings->menu_layout; ?>.fl-toggle-arrows .fl-menu-toggle,
-	.fl-node-<?php echo $id; ?> .fl-menu-<?php echo $settings->menu_layout; ?>.fl-toggle-none .fl-menu-toggle{
+	.fl-node-<?php echo $id; ?> .fl-menu-<?php echo $settings->menu_layout; ?>.fl-toggle-arrows .fl-menu-toggle{
 		width: <?php echo $toggle_height; ?>px;
 	}
 	.fl-node-<?php echo $id; ?> .fl-menu-horizontal.fl-toggle-arrows .fl-menu-toggle,
-	.fl-node-<?php echo $id; ?> .fl-menu-horizontal.fl-toggle-none .fl-menu-toggle,
-	.fl-node-<?php echo $id; ?> .fl-menu-vertical.fl-toggle-arrows .fl-menu-toggle,
-	.fl-node-<?php echo $id; ?> .fl-menu-vertical.fl-toggle-none .fl-menu-toggle{
+	.fl-node-<?php echo $id; ?> .fl-menu-vertical.fl-toggle-arrows .fl-menu-toggle{
 		width: <?php echo $toggle_width; ?>px;
 	}
-<?php elseif ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && 'plus' == $settings->submenu_hover_toggle ) || ( 'accordion' == $settings->menu_layout && 'plus' == $settings->submenu_click_toggle ) ) : ?>
+	<?php elseif ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && 'plus' == $settings->submenu_hover_toggle ) || ( 'accordion' == $settings->menu_layout && 'plus' == $settings->submenu_click_toggle ) ) : ?>
 	.fl-node-<?php echo $id; ?> .fl-menu-<?php echo $settings->menu_layout; ?>.fl-toggle-plus .fl-has-submenu-container a{
 		padding-right: <?php echo $toggle_width; ?>px;
 	}
-
 	.fl-node-<?php echo $id; ?> .fl-menu-accordion.fl-toggle-plus .fl-menu-toggle{
 		width: <?php echo $toggle_height; ?>px;
 	}
@@ -452,6 +357,7 @@ if ( ( in_array( $settings->menu_layout, array( 'horizontal', 'vertical' ) ) && 
 	.fl-node-<?php echo $id; ?> .fl-menu-vertical.fl-toggle-plus .fl-menu-toggle{
 		width: <?php echo $toggle_width; ?>px;
 	}
+	<?php endif; ?>
 	<?php
 endif;
 
@@ -485,14 +391,16 @@ if ( 'always' != $module->get_media_breakpoint() ) :
 		.fl-node-<?php echo $id; ?> .fl-menu-mobile-flyout {
 			<?php if ( ! empty( $settings->mobile_menu_bg ) ) : ?>
 				background-color: <?php echo FLBuilderColor::hex_or_rgb( $settings->mobile_menu_bg ); ?>;
+			<?php elseif ( ! empty( $settings->menu_bg_color ) ) : ?>
+				background-color: <?php echo FLBuilderColor::hex_or_rgb( $settings->menu_bg_color ); ?>;
 			<?php else : ?>
 				background-color: #fff;
 			<?php endif; ?>
 
 			<?php if ( 'right' == $settings->flyout_position ) : ?>
-				right: -267px;
+				right: -<?php echo $settings->flyout_width + 17; ?>px;
 			<?php elseif ( 'left' == $settings->flyout_position ) : ?>
-				left: -267px;
+				left: -<?php echo $settings->flyout_width + 17; ?>px;
 			<?php endif; ?>
 			height: 0px;
 			overflow-y: auto;
@@ -505,12 +413,13 @@ if ( 'always' != $module->get_media_breakpoint() ) :
 			-webkit-box-shadow: 0 0 4px #4e3c3c;
 			box-shadow: 0 0 4px #4e3c3c;
 			z-index: 999999;
-			width: 250px;
+			width: <?php echo $settings->flyout_width; ?>px;
 		}
 		.fl-node-<?php echo $id; ?> .fl-menu-mobile-flyout ul {
 			margin: 0 auto;
 		}
 		.fl-node-<?php echo $id; ?> .fl-menu .fl-menu-mobile-flyout .menu {
+			background-color: transparent;
 			display: block !important;
 			float: none;
 		}
@@ -557,7 +466,7 @@ if ( 'always' != $module->get_media_breakpoint() ) :
 			}
 		<?php endif; ?>
 
-		<?php if ( ! empty( $settings->mobile_menu_bg ) ) : ?>
+		<?php if ( ! empty( $settings->mobile_menu_bg ) && ! $module->is_responsive_menu_flyout() ) : ?>
 			.fl-node-<?php echo $id; ?> .fl-menu .menu {
 				background-color: <?php echo FLBuilderColor::hex_or_rgb( $settings->mobile_menu_bg ); ?>;
 			}
@@ -646,6 +555,24 @@ if ( 'always' != $module->get_media_breakpoint() ) :
 		) );
 	endif;
 
+	// Adjust the menu on tiny sizes when the responsive style is set to inline
+	if ( 1 < $module->version && 'no' === $settings->mobile_full_width ) :
+		?>
+		.fl-node-<?php echo $id; ?> .fl-menu {
+			container-type: inline-size;
+		}
+		@container (max-width: 250px) {
+			.fl-node-<?php echo $id; ?> .fl-menu .menu-item.fl-has-submenu .sub-menu {
+				min-width: auto;
+				padding: 0;
+			}
+			.fl-node-<?php echo $id; ?> .fl-menu .menu-item a {
+				overflow: hidden;
+			}
+		}
+		<?php
+	endif;
+
 	$flyout_selector  = "body.fl-builder-edit .fl-node-$id .fl-menu-responsive-flyout-overlay nav,";
 	$flyout_selector .= "body.fl-builder-edit .fl-node-$id .fl-menu-responsive-flyout-push nav,";
 	$flyout_selector .= "body.fl-builder-edit .fl-node-$id .fl-menu-responsive-flyout-push-opacity nav";
@@ -711,6 +638,7 @@ if ( 'always' != $module->get_media_breakpoint() ) :
 	) );
 	?>
 
+	.fl-node-<?php echo $id; ?> .fl-menu:not(.no-hover) .fl-has-submenu:hover > .sub-menu,
 	.fl-node-<?php echo $id; ?> .mega-menu.fl-active .hide-heading > .sub-menu,
 	.fl-node-<?php echo $id; ?> .mega-menu-disabled.fl-active .hide-heading > .sub-menu {
 		display: block !important;
@@ -1125,7 +1053,7 @@ if ( isset( $settings->menu_search ) && 'show' == $settings->menu_search && ! FL
 	}
 
 	FLBuilderCSS::rule( array(
-		'selector' => ".fl-node-$id .fl-menu-search-item a.fl-button, .fl-node-$id .fl-menu-search-item a.fl-button:hover",
+		'selector' => ".fl-node-$id .fl-menu-search-item .fl-button:is(a, button), .fl-node-$id .fl-menu-search-item .fl-button:is(a, button):hover",
 		'props'    => array(
 			'background' => 'none',
 			'border'     => '0 none',
@@ -1133,7 +1061,7 @@ if ( isset( $settings->menu_search ) && 'show' == $settings->menu_search && ! FL
 	) );
 
 	FLBuilderCSS::rule( array(
-		'selector' => ".fl-node-$id .fl-menu-search-item a.fl-button, .fl-node-$id .fl-menu-search-item a.fl-button:visited",
+		'selector' => ".fl-node-$id .fl-menu-search-item .fl-button:is(a, button), .fl-node-$id .fl-menu-search-item a.fl-button:visited",
 		'enabled'  => empty( $settings->search_icon_size ),
 		'props'    => array(
 			'font-size' => '16px',
@@ -1143,7 +1071,7 @@ if ( isset( $settings->menu_search ) && 'show' == $settings->menu_search && ! FL
 	FLBuilderCSS::responsive_rule( array(
 		'settings'     => $settings,
 		'setting_name' => 'search_icon_size',
-		'selector'     => ".fl-node-$id .fl-menu-search-item a.fl-button, .fl-node-$id .fl-menu-search-item a.fl-button:visited",
+		'selector'     => ".fl-node-$id .fl-menu-search-item .fl-button:is(a, button), .fl-node-$id .fl-menu-search-item a.fl-button:visited",
 		'prop'         => 'font-size',
 		'enabled'      => ! empty( $settings->search_icon_size ),
 	) );

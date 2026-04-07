@@ -31,6 +31,9 @@
 			}.bind( this ) );
 		} else {
 			this._init();
+			if ( config.callback ) {
+				config.callback();
+			}
 		}
 	};
 
@@ -164,7 +167,7 @@
 		layoutDoc           : null,
 
 		/**
-		 * Node settings saved when the preview was initalized.
+		 * Node settings saved when the preview was initialized.
 		 *
 		 * @since 1.7
 		 * @access private
@@ -321,6 +324,10 @@
 		 */
 		_settingsHaveChanged: function()
 		{
+			if ( FLBuilder._autoSuggestValueChanged ) {
+				FLBuilder._autoSuggestValueChanged = false;
+				return true;
+			}
 			var form 	 = $('.fl-builder-settings-lightbox .fl-builder-settings', window.parent.document),
 				settings = FLBuilder._getSettings( form );
 
@@ -514,7 +521,7 @@
 				value = 'auto';
 			} else if ( -1 === $.inArray( property, ignore ) && node.length ) {
 				this._disableStyles();
-				value = element.css( property );
+				value = element.eq( element.length - 1 ).css( property );
 				this._enableStyles();
 			}
 
@@ -1243,10 +1250,10 @@
 		 */
 		_bgVideoChange: function(e)
 		{
-			var eles        	= this.elements,
-				source 			= eles.bgVideoSource.val(),
-				video 			= eles.bgVideo.val(),
-				videoUrl		= eles.bgVideoServiceUrl.val(),
+			var elements     	= this.elements,
+				source 			= elements.bgVideoSource.val(),
+				video 			= elements.bgVideo.val(),
+				videoUrl		= elements.bgVideoServiceUrl.val(),
 				youtubePlayer 	= 'https://www.youtube.com/iframe_api',
 				vimeoPlayer		= 'https://player.vimeo.com/api/player.js',
 				scriptTag  		= $( '<script>' );
@@ -1284,12 +1291,12 @@
 		 */
 		_bgSlideshowChange: function(e)
 		{
-			var eles        = this.elements,
-				source      = eles.bgSlideshowSource.val(),
-				photos      = eles.bgSlideshowPhotos.val(),
-				feed        = eles.bgSlideshowFeedUrl.val(),
-				speed       = eles.bgSlideshowSpeed.val(),
-				transSpeed  = eles.bgSlideshowTransSpeed.val();
+			var elements    = this.elements,
+				source      = elements.bgSlideshowSource.val(),
+				photos      = elements.bgSlideshowPhotos.val(),
+				feed        = elements.bgSlideshowFeedUrl.val(),
+				speed       = elements.bgSlideshowSpeed.val(),
+				transSpeed  = elements.bgSlideshowTransSpeed.val();
 
 			if(source == 'wordpress' && photos === '') {
 				return;
@@ -1699,14 +1706,16 @@
 		 */
 		_rowInitContentAlignment: function(e)
 		{
-			const height           = this.elements.height.val().trim();
-			const form             = $( '.fl-builder-settings:visible' );
-			const alignFieldRow    = form.find( '#fl-field-content_alignment' );
-			const aspectValue       = form.find( '#fl-field-aspect_ratio input' ).val();
-			if ( height === 'default' && ! aspectValue ) {
-				alignFieldRow.hide();
-			} else {
-				alignFieldRow.show();
+			if ( this.elements.height.length ) {
+				const height           = this.elements.height.val().trim();
+				const form             = $( '.fl-builder-settings:visible' );
+				const alignFieldRow    = form.find( '#fl-field-content_alignment' );
+				const aspectValue      = form.find( '#fl-field-aspect_ratio input' ).val();
+				if ( height === 'default' && ! aspectValue ) {
+					alignFieldRow.hide();
+				} else {
+					alignFieldRow.show();
+				}
 			}
 		},
 
@@ -1976,6 +1985,8 @@
 				return false;
 			}
 
+			this._initDefaultComponentPreviews( fields );
+
 			for( ; i < fields.length; i++) {
 
 				field = fields.eq(i);
@@ -2012,12 +2023,39 @@
 		},
 
 		/**
+		 * Initializes the default preview logic specific to components.
+		 * This mainly handles previews that are set to none because those
+		 * type of previews are typically done via settings.js in a module.
+		 * That isn't loaded for component settings since they are made up
+		 * of potentially multiple nodes, so we refresh instead.
+		 *
+		 * @since 2.10
+		 */
+		_initDefaultComponentPreviews: function( fields ) {
+			const isComponent = 'dynamic_node_form' === this.elements.settings.attr( 'data-form-id' );
+
+			if ( ! isComponent ) {
+				return;
+			}
+
+			for ( let i = 0; i < fields.length; i++ ) {
+
+				const field = fields.eq( i );
+				const preview = field.data( 'preview' );
+
+				if ( 'none' === preview.type ) {
+					this._initFieldRefreshPreview(field);
+				}
+			}
+		},
+
+		/**
 		 * Reinitializes the preview logic for deferred fields
 		 * to setup events again if they have re-rendered.
 		 *
 		 * @since 2.9
 		 */
-		_reinitDeferredFieldPrevies: function() {
+		_reinitDeferredFieldPreviews: function() {
 			const fields = this.elements.settings.find( '.fl-field' );
 
 			for ( let i = 0; i < fields.length; i++ ) {
@@ -2571,6 +2609,7 @@
 				important = preview.important ? ' !important' : '',
 				val = ''
 
+
 			// If the selected font is a Google Font, build the font stylesheet
 			if( fontGroup == 'Google' || fontGroup == 'Recently Used' ){
 				this._buildFontStylesheet( uniqueID, font.val(), weight.val() );
@@ -2628,7 +2667,6 @@
 					weights = weights.filter( function( weight ) {
 				        return fontArray[ key ].indexOf( weight ) < 0;
 				    });
-
 					fontArray[ key ] = fontArray[ key ].concat( weights );
 
 				});
@@ -2639,6 +2677,14 @@
 				if ( 'Molle' === font ) {
 					href += font + ':i|';
 				} else {
+					/**
+					 * If default is set for weight, then we have to load all the weights so Google
+					 * can use the intended default.
+					 * This wrecked my head.
+					 */
+					if ( weight[0] == 'default' ) {
+						weight = [FLBuilderFontFamilies.google[font].join('|')]
+					}
 					href += font + ':' + weight.join() + '|';
 				}
 			} );

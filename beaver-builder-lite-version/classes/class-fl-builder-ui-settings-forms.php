@@ -459,6 +459,7 @@ class FLBuilderUISettingsForms {
 			if ( ! is_object( $node ) || ! isset( $node->settings ) || ! is_object( $node->settings ) ) {
 				continue;
 			}
+
 			$node_settings[ $node_id ] = FLBuilderModel::get_node_settings( $node, false );
 		}
 
@@ -492,47 +493,116 @@ class FLBuilderUISettingsForms {
 				continue;
 			}
 
-			foreach ( $node->settings as $key => $value ) {
+			if ( ! empty( $node->dynamic ) ) {
+				$dynamic_child_nodes = FLBuilderDynamicGlobal::get_dynamic_child_nodes( $node );
+				foreach ( $dynamic_child_nodes as $child_node_id => $child_node ) {
+					$child_node_attachments = self::get_node_attachments( $child_node );
+					$attachments            = array_merge( $attachments, $child_node_attachments );
+				}
 
-				// Look for image attachments.
-				if ( strstr( $key, '_src' ) ) {
+				// Also prep attachments from component instance overrides
+				// stored in dynamic_node_settings (e.g. video fields).
+				$dynamic_overrides = isset( $node->settings->dynamic_node_settings )
+					? $node->settings->dynamic_node_settings
+					: null;
 
-					$base = str_replace( '_src', '', $key );
-
-					if ( isset( $node->settings->$base ) ) {
-
-						if ( is_numeric( $node->settings->$base ) ) {
-							$id   = $node->settings->$base;
-							$data = self::prep_attachment_for_js_config( $id );
-							if ( $data ) {
-								$attachments[ $id ] = $data;
-							}
-						} elseif ( is_array( $node->settings->$base ) ) {
-							foreach ( $node->settings->$base as $id ) {
-								$data = self::prep_attachment_for_js_config( $id );
+				if ( $dynamic_overrides ) {
+					$override_groups = array();
+					if ( isset( $dynamic_overrides->root ) ) {
+						foreach ( (array) $dynamic_overrides->root as $node_overrides ) {
+							$override_groups[] = (array) $node_overrides;
+						}
+					}
+					if ( isset( $dynamic_overrides->child ) ) {
+						foreach ( (array) $dynamic_overrides->child as $node_overrides ) {
+							$override_groups[] = (array) $node_overrides;
+						}
+					}
+					foreach ( $override_groups as $overrides ) {
+						foreach ( $overrides as $value ) {
+							if ( is_numeric( $value ) && (int) $value > 0 ) {
+								$data = self::prep_attachment_for_js_config( (int) $value );
 								if ( $data ) {
-									$attachments[ $id ] = $data;
+									$attachments[ (int) $value ] = $data;
 								}
 							}
 						}
 					}
 				}
+			}
 
-				// Look for video attachments.
-				if ( isset( $fields[ $key ] ) && 'video' === $fields[ $key ]['type'] ) {
+			$node_attachments = self::get_node_attachments( $node );
+			$attachments      = array_merge( $attachments, $node_attachments );
 
-					if ( is_numeric( $value ) ) {
-						$id   = $value;
+		}
+
+		return $attachments;
+	}
+
+	/**
+	 * Gathers and prepares attachments for a specific node.
+	 *
+	 * @since 2.10
+	 * @param object $node
+	 * @return array
+	 */
+	static private function get_node_attachments( $node ) {
+		$attachments = [];
+
+		if ( empty( $node ) || empty( $node->settings ) ) {
+			return $attachments;
+		}
+
+		// Get field definitions for this node type to identify video fields.
+		$fields = [];
+		if ( 'row' === $node->type && isset( FLBuilderModel::$settings_forms['row'] ) ) {
+			$fields = FLBuilderModel::get_settings_form_fields( FLBuilderModel::$settings_forms['row']['tabs'] );
+		} elseif ( 'column' === $node->type && isset( FLBuilderModel::$settings_forms['col'] ) ) {
+			$fields = FLBuilderModel::get_settings_form_fields( FLBuilderModel::$settings_forms['col']['tabs'] );
+		} elseif ( 'module' === $node->type && isset( $node->settings->type, FLBuilderModel::$modules[ $node->settings->type ] ) ) {
+			$fields = FLBuilderModel::get_settings_form_fields( FLBuilderModel::$modules[ $node->settings->type ]->form );
+		}
+
+		foreach ( $node->settings as $key => $value ) {
+
+			// Look for image attachments.
+			if ( strstr( $key, '_src' ) ) {
+
+				$base = str_replace( '_src', '', $key );
+
+				if ( isset( $node->settings->$base ) ) {
+
+					if ( is_numeric( $node->settings->$base ) ) {
+						$id   = $node->settings->$base;
 						$data = self::prep_attachment_for_js_config( $id );
 						if ( $data ) {
 							$attachments[ $id ] = $data;
 						}
-					} elseif ( is_array( $value ) ) {
-						foreach ( $value as $id ) {
+					} elseif ( is_array( $node->settings->$base ) ) {
+						foreach ( $node->settings->$base as $id ) {
 							$data = self::prep_attachment_for_js_config( $id );
 							if ( $data ) {
 								$attachments[ $id ] = $data;
 							}
+						}
+					}
+				}
+			}
+
+			// Look for video attachments.
+			if ( isset( $fields[ $key ] ) && 'video' === $fields[ $key ]['type'] ) {
+
+				if ( is_numeric( $value ) ) {
+					$id   = $value;
+					$data = self::prep_attachment_for_js_config( $id );
+					if ( $data ) {
+						$attachments[ $id ] = $data;
+					}
+				} elseif ( is_array( $value ) ) {
+					foreach ( $value as $id ) {
+						$data = self::prep_attachment_for_js_config( $id );
+						if ( $data ) {
+							$attachments[ $id ] = $data;
 						}
 					}
 				}
@@ -549,7 +619,7 @@ class FLBuilderUISettingsForms {
 	 * @param int $id
 	 * @return array|bool
 	 */
-	static private function prep_attachment_for_js_config( $id ) {
+	static public function prep_attachment_for_js_config( $id ) {
 
 		$url = wp_get_attachment_url( $id );
 
@@ -717,6 +787,11 @@ class FLBuilderUISettingsForms {
 			$tabs = FLBuilderModel::$settings_forms[ $form ]['tabs'];
 		} elseif ( 'module' === $group ) {
 			$tabs = FLBuilderModel::$modules[ $form ]->form;
+		} elseif ( 'dynamic' === $group && $data['node_id'] ) {
+			$dn_tabs = FLBuilderDynamicGlobal::get_dynamic_node_tabs( $data['node_id'], $group );
+			$tabs    = $dn_tabs['tabs'];
+		} else {
+			$tabs = [];
 		}
 
 		if ( empty( $tabs ) ) {
@@ -914,9 +989,10 @@ class FLBuilderUISettingsForms {
 	 * @param string $name The field name.
 	 * @param array $field An array of setup data for the field.
 	 * @param object $settings Form settings data object.
+	 * @param array  $data Dynamic Node fields data.
 	 * @return void
 	 */
-	static public function render_settings_field( $name, $field, $settings = null ) {
+	static public function render_settings_field( $name, $field, $settings = null, $data = null ) {
 
 		/**
 		 * Use this filter to modify the config array for a field before it is rendered.

@@ -29,6 +29,9 @@
 			// Init backgrounds.
 			FLBuilderLayout._initBackgrounds();
 
+			// Init buttons.
+			FLBuilderLayout._initButtons();
+
 			// Init row shape layer height.
 			FLBuilderLayout._initRowShapeLayerHeight();
 
@@ -274,8 +277,8 @@
 			var body = $( 'body' ),
 				ua   = navigator.userAgent;
 
-			// Add the builder body class.
-			if ( ! body.hasClass( 'archive' ) && $( '.fl-builder-content-primary' ).length > 0 ) {
+			// Add the builder body class (skip on block-only frontend to avoid layout break).
+			if ( ! body.hasClass( 'fl-builder-blocks-only' ) && ! body.hasClass( 'archive' ) && $( '.fl-builder-content-primary' ).length > 0 ) {
 				body.addClass('fl-builder');
 			}
 
@@ -345,6 +348,25 @@
 					}, 100 );
 				});
 			}
+		},
+
+		/**
+		 * Initializes all buttons in a layout.
+		 *
+		 * @since 2.10
+		 * @access private
+		 * @method _initButtons
+		 */
+		_initButtons: function()
+		{
+			// Trigger click event on Enter or Space key press for deprecated button markup.
+			$('a.fl-button[role="button"]').on('keydown', function(event) {
+				if (event.key === 'Enter' || event.key === ' ') {
+					// Necessary to prevent the default behavior of the space key from scrolling the page
+					event.preventDefault();
+					$(this).trigger('click');
+				}
+			});
 		},
 
 		/**
@@ -463,6 +485,7 @@
 				fallback    = wrap.data( 'fallback' ),
 				loaded      = wrap.data( 'loaded' ),
 				videoMobile = wrap.data( 'video-mobile' ),
+				playPauseButton = wrap.find('.fl-bg-video-play-pause-control'),
 				fallbackTag = '',
 				videoTag    = null,
 				mp4Tag      = null,
@@ -518,6 +541,28 @@
 				}
 				else {
 					wrap.append( videoTag );
+
+					if ( playPauseButton.length > 0 ) {
+						var video = videoTag[0];
+
+						playPauseButton.on( 'click', { video: video }, function(e) {
+							var video = e.data.video;
+
+							if ( video.paused ) {
+								video.play();
+							} else {
+								video.pause();
+							}
+						} );
+
+						$( video ).on( 'play playing', function () {
+							playPauseButton.removeClass( 'fa-play' ).addClass( 'fa-pause' );
+						} );
+						
+						$( video ).on( 'pause ended waiting', function () {
+							playPauseButton.removeClass( 'fa-pause' ).addClass( 'fa-play' );
+						} );
+					}
 				}
 			}
 			else {
@@ -544,6 +589,7 @@
 				videoPlayer = playerWrap.find('.fl-bg-video-player'),
 				enableAudio = playerWrap.data('enable-audio'),
 				audioButton = playerWrap.find('.fl-bg-video-audio'),
+				playPauseButton = playerWrap.find('.fl-bg-video-play-pause-control'),
 				startTime   = 'undefined' !== typeof playerWrap.data('start') ? playerWrap.data('start') : 0,
 				startTime   = 'undefined' !== typeof playerWrap.data('t') && startTime === 0 ? playerWrap.data('t') : startTime,
 				endTime     = 'undefined' !== typeof playerWrap.data('end') ? playerWrap.data('end') : 0,
@@ -587,6 +633,18 @@
 									if ( audioButton.length > 0 && ! FLBuilderLayout._isMobile() ) {
 										audioButton.on( 'click', {button: audioButton, player: player}, FLBuilderLayout._toggleBgVideoAudio );
 									}
+
+									if ( playPauseButton.length > 0 ) {
+										playPauseButton.on( 'click', {player: player}, function(e) {
+											var player = e.data.player;
+			
+											if ( 1 === player.getPlayerState() ) {
+												player.pauseVideo();
+											} else {
+												player.playVideo();
+											}
+										});
+									}
 								},
 								onStateChange: function( event ) {
 
@@ -602,7 +660,7 @@
 									}
 
 									// Comply with the audio policy in some browsers like Chrome and Safari.
-									if ( stateCount > 1 && (-1 === event.data || 2 === event.data) && "yes" === enableAudio ) {
+									if ( stateCount > 1 && -1 === event.data && "yes" === enableAudio ) {
 										player.mute();
 										player.playVideo();
 										audioButton.show();
@@ -615,6 +673,18 @@
 										else {
 											player.playVideo();
 										}
+									}
+
+									if ( event.data === YT.PlayerState.PLAYING ) {
+										playPauseButton.removeClass( 'fa-play' ).addClass( 'fa-pause' );
+									} else if ( event.data === YT.PlayerState.PAUSED ) {
+										playPauseButton.removeClass( 'fa-pause' ).addClass( 'fa-play' );
+									} else if ( event.data === YT.PlayerState.BUFFERING ) {
+										playPauseButton.removeClass( 'fa-play' ).addClass( 'fa-pause' );
+									} else if ( event.data === YT.PlayerState.CUED ) {
+										playPauseButton.removeClass( 'fa-pause' ).addClass( 'fa-play' );
+									} else if ( event.data === YT.PlayerState.ENDED ) {
+										playPauseButton.removeClass( 'fa-pause' ).addClass( 'fa-play' );
 									}
 								},
 								onError: function(event) {
@@ -687,6 +757,8 @@
 				videoPlayer = playerWrap.find('.fl-bg-video-player'),
 				enableAudio = playerWrap.data('enable-audio'),
 				audioButton = playerWrap.find('.fl-bg-video-audio'),
+				playPauseButton = playerWrap.find('.fl-bg-video-play-pause-control'),
+				playerState = '',
 				player,
 				width = playerWrap.outerWidth(),
 				ua    = navigator.userAgent;
@@ -730,6 +802,35 @@
 
 				if ( audioButton.length > 0 ) {
 					audioButton.on( 'click', {button: audioButton, player: player}, FLBuilderLayout._toggleBgVideoAudio );
+				}
+
+				player.on( 'play', function() {
+					playerState = 'play';
+					playPauseButton.removeClass( 'fa-play' ).addClass( 'fa-pause' );
+				} );
+				player.on( 'pause', function() {
+					playerState = 'pause';
+					playPauseButton.removeClass( 'fa-pause' ).addClass( 'fa-play' );
+				} );
+				player.on( 'ended', function() {
+					playerState = 'ended';
+					playPauseButton.removeClass( 'fa-pause' ).addClass( 'fa-play' );
+				} );
+				player.on( 'bufferstart', function() {
+					playerState = 'bufferstart';
+					playPauseButton.removeClass( 'fa-play' ).addClass( 'fa-pause' );
+				} );
+
+				if ( playPauseButton.length > 0 ) {
+					playPauseButton.on( 'click', { player: player }, function( e ) {
+						var player = e.data.player;
+
+						if ( playerState === 'play' ) {
+							player.pause();
+						} else {
+							player.play();
+						}
+					} );
 				}
 			}
 		},
@@ -1027,7 +1128,7 @@
 		 */
 		_initAnchorLinks: function()
 		{
-			$( 'a' ).each( FLBuilderLayout._initAnchorLink );
+			$( 'a, [role="link"]' ).each( FLBuilderLayout._initAnchorLink );
 		},
 
 		/**
@@ -1040,7 +1141,8 @@
 		_initAnchorLink: function()
 		{
 			var link    = $( this ),
-				href    = link.attr( 'href' ),
+				href    = link.data( 'url' ) ? link.data( 'url' ) : link.attr( 'href' ),
+				target  = link.data( 'url' ) ? new URL( href, window.location.href ) : this,
 				loc     = window.location,
 				id      = null,
 				element = null,
@@ -1048,7 +1150,7 @@
 
 			if ( 'undefined' != typeof href && href.indexOf( '#' ) > -1 && link.closest('svg').length < 1 ) {
 
-				if ( loc.pathname.replace( /^\//, '' ) == this.pathname.replace( /^\//, '' ) && loc.hostname == this.hostname ) {
+				if ( loc.pathname.replace( /^\//, '' ) == target.pathname.replace( /^\//, '' ) && loc.hostname == target.hostname ) {
 
 					try {
 
@@ -1089,7 +1191,8 @@
 		 */
 		_scrollToElementOnLinkClick: function( e, callback )
 		{
-			var element = $( '#' + $( this ).attr( 'href' ).split( '#' ).pop() );
+			var attribute = $( this ).data( 'url' ) ? $( this ).data( 'url' ) : $( this ).attr( 'href' );
+			var element = $( '#' + attribute.split( '#' ).pop() );
 
 			FLBuilderLayout._scrollToElement( element, callback );
 
@@ -1314,8 +1417,10 @@
 		{
 			var field = $( this );
 
+			field.removeAttr( 'aria-invalid' );
 			field.removeClass( 'fl-form-error' );
-			field.siblings( '.fl-form-error-message' ).hide();
+			const message = field.attr('aria-describedby');
+			message ? $( '#' + message ).hide() : field.siblings( '.fl-form-error-message' ).hide();
 		},
 
 		/**

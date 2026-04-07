@@ -37,6 +37,7 @@ final class FLBuilderAdminAdvanced {
 			'iframe_ui'              => array(
 				'label'       => self::__( 'Responsive iFrame UI', 'fl-builder' ),
 				'default'     => 1,
+				'enabled'     => get_transient( 'fl_debug_mode' ),
 				'callback'    => array( __CLASS__, 'disable_iframe_ui' ),
 				'group'       => 'ui',
 				'description' => self::__( 'The iFrame UI provides accurate responsive editing. Disable it if you are having issues with third-party or legacy add-ons.', 'fl-builder' ),
@@ -383,6 +384,7 @@ final class FLBuilderAdminAdvanced {
 		add_action( 'wp_ajax_fl_advanced_submit', array( __CLASS__, 'advanced_submit' ) );
 		add_action( 'plugins_loaded', array( __CLASS__, 'init_hooks' ), 5 );
 		self::global_styles();
+		self::update();
 	}
 
 
@@ -441,12 +443,15 @@ final class FLBuilderAdminAdvanced {
 				update_option( "_fl_builder_{$key}", $setting['default'] );
 				$option = $setting['default'];
 			}
-			if ( $option != $setting['default'] && isset( $setting['callback'] ) ) {
+			if ( $option != $setting['default'] && isset( $setting['callback'] ) && 'limitrevisions_enabled' !== $key ) {
 				$action   = isset( $setting['action'] ) ? $setting['action'] : 'init';
 				$priority = isset( $setting['priority'] ) ? $setting['priority'] : 11;
 				add_action( $action, function () use ( $setting ) {
 					call_user_func( $setting['callback'] );
 				}, $priority );
+			}
+			if ( 'limitrevisions_enabled' === $key && $option ) {
+				self::limit_revisions();
 			}
 		}
 	}
@@ -458,6 +463,11 @@ final class FLBuilderAdminAdvanced {
 	static public function register_settings() {
 		foreach ( self::get_settings() as $key => $setting ) {
 			FLBuilderAdminSettings::register_setting( '_fl_builder_' . $key );
+		}
+	}
+	static public function update() {
+		if ( false === get_option( '_fl_builder_limitrevisions_enabled' ) ) {
+			update_option( '_fl_builder_limitrevisions_enabled', true );
 		}
 	}
 }
