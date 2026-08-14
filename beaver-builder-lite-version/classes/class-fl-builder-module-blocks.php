@@ -63,12 +63,27 @@ class FLBuilderModuleBlocks {
 	}
 
 	/**
+	 * Check if we are in the Widgets editor.
+	 *
+	 * @return bool
+	 */
+	static public function is_widgets_editor() {
+		global $pagenow;
+		return 'widgets.php' === $pagenow;
+	}
+
+	/**
 	 * Checks if module blocks should load.
 	 *
 	 * @return bool
 	 */
 	static public function should_load() {
 		global $wp_version;
+
+		// Module blocks are not supported in Widgets editor
+		if ( self::is_widgets_editor() ) {
+			return false;
+		}
 
 		$enabled = self::get_enabled_block_editor_modules();
 
@@ -291,7 +306,12 @@ class FLBuilderModuleBlocks {
 			return;
 		}
 
+		// Save and restore the loop counter so posts blocks rendered
+		// during this pre-render pass don't corrupt pagination for the
+		// actual page render.
+		$saved_loop_counter = FLBuilderLoop::$loop_counter;
 		do_blocks( $post->post_content );
+		FLBuilderLoop::$loop_counter = $saved_loop_counter;
 
 		FLBuilder::clear_enqueued_global_assets();
 	}

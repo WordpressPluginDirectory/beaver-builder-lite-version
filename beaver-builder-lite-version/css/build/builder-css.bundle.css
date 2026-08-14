@@ -38,6 +38,7 @@
   --fl-builder-target-size: 36px;
   --fl-builder-min-node-size: 24px;
   --fl-builder-panel-width: 320px;
+  --fl-builder-outline-panel-width: 320px;
   --fl-builder-panel-min-width: 310px;
   --fl-builder-panel-max-width: 600px;
   --fl-builder-panel-min-height: 500px;
@@ -1341,7 +1342,7 @@ html.fl-builder-show-admin-bar #wpadminbar {
 /* @group Visibility Rules
 ------------------------------------------------------ */
 body:not(.fl-builder-edit) .fl-node-hidden,
-.fl-builder-edit .fl-node-hidden.fl-node-global,
+body.fl-builder-edit:not(.fl-builder-template-edit) [data-dynamic-editing="1"] .fl-node-hidden,
 .fl-builder-edit.fl-responsive-preview-enabled .fl-node-hidden {
   display: none;
 }
@@ -4372,13 +4373,8 @@ button.fl-builder-button.fl-builder-bar-title-caret:focus {
   mix-blend-mode: normal;
 }
 
-.fl-block-overlay i.fl-block-has-rules {
-  font-family: "Font Awesome 5 Free" !important;
-  font-size: 14px !important;
-  text-decoration: none !important;
-  text-shadow: none !important;
-  line-height: 1 !important;
-  font-style: normal !important;
+.fl-block-overlay .fl-block-has-rules svg {
+  display: block;
 }
 
 .fl-block-overlay-active {
@@ -7224,6 +7220,13 @@ Rules to ensure compatibility with v2.0.
   transform: translate(-50%, -120%);
   box-shadow: 1px 1px 5px #093a26;
   z-index: 9999999;
+}
+
+/* Popup Maker
+ ------------------------------------------------------ */
+.fl-builder-edit .pum-container {
+  height: calc(100vh - 110px);
+  overflow-y: auto !important;
 }
 
 /* Dynamic Node

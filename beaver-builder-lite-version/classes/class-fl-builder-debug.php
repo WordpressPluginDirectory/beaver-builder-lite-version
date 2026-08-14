@@ -262,7 +262,7 @@ final class FL_Debug {
 		foreach ( (array) $locations as $k => $location ) {
 			$args = array(
 				'name' => ucfirst( $k ),
-				'data' => $menus[ $location ] ? 'Menu - ' . $menus[ $location ] : 'No Menu Set',
+				'data' => isset( $menus[ $location ] ) ? 'Menu - ' . $menus[ $location ] : 'No Menu Set',
 			);
 			self::register( 'menu_location_' . $k, $args );
 		}
@@ -457,7 +457,7 @@ final class FL_Debug {
 		);
 		self::register( 'bb', $args );
 
-		$info = get_option( '_fl_builder_update_info', array() );
+		$info = get_site_option( '_fl_builder_update_info', array() );
 		$from = '';
 		if ( isset( $info['from'] ) && ! empty( $info['from'] ) ) {
 			$from = ' - Previous ' . $info['from'];

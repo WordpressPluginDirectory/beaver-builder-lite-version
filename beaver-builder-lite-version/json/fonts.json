@@ -119,6 +119,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Akt": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Aladin": {
     "variants": ["regular"],
     "fallback": "sans-serif"
@@ -197,6 +202,11 @@
   "Alice": {
     "variants": ["regular"],
     "fallback": "serif"
+  }
+}, {
+  "Alien Block": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
   }
 }, {
   "Alike": {
@@ -751,6 +761,11 @@
 }, {
   "BIZ UDPMincho": {
     "variants": ["regular", "700"],
+    "fallback": "serif"
+  }
+}, {
+  "BJCree": {
+    "variants": ["regular", "500", "600", "700"],
     "fallback": "serif"
   }
 }, {
@@ -2389,6 +2404,11 @@
     "fallback": "serif"
   }
 }, {
+  "Estedad": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Estonia": {
     "variants": ["regular"],
     "fallback": "cursive"
@@ -2524,8 +2544,13 @@
     "fallback": "sans-serif"
   }
 }, {
-  "Finlandica": {
-    "variants": ["regular", "500", "600", "700", "italic", "500italic", "600italic", "700italic"],
+  "Finlandica Headline": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Finlandica Text": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -2780,13 +2805,18 @@
   }
 }, {
   "Geist": {
-    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "sans-serif"
   }
 }, {
   "Geist Mono": {
-    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "monospace"
+  }
+}, {
+  "Geist Pixel": {
+    "variants": ["regular"],
+    "fallback": "sans-serif"
   }
 }, {
   "Gelasio": {
@@ -3015,7 +3045,7 @@
   }
 }, {
   "Grenze": {
-    "variants": ["100", "100italic", "200", "200italic", "300", "300italic", "regular", "italic", "500", "500italic", "600", "600italic", "700", "700italic", "800", "800italic", "900", "900italic"],
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "serif"
   }
 }, {
@@ -4454,6 +4484,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "M PLUS U": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Ma Shan Zheng": {
     "variants": ["regular"],
     "fallback": "cursive"
@@ -4809,6 +4844,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "Miranda Sans": {
+    "variants": ["regular", "500", "600", "700", "italic", "500italic", "600italic", "700italic"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Miriam Libre": {
     "variants": ["regular", "500", "600", "700"],
     "fallback": "sans-serif"
@@ -4942,6 +4982,11 @@
   "MonteCarlo": {
     "variants": ["regular"],
     "fallback": "cursive"
+  }
+}, {
+  "Montenegrin Gothic One": {
+    "variants": ["regular"],
+    "fallback": "serif"
   }
 }, {
   "Montez": {
@@ -7309,6 +7354,11 @@
     "fallback": "cursive"
   }
 }, {
+  "Pliant": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+    "fallback": "sans-serif"
+  }
+}, {
   "Plus Jakarta Sans": {
     "variants": ["200", "300", "regular", "500", "600", "700", "800", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic"],
     "fallback": "sans-serif"
@@ -8054,6 +8104,11 @@
     "fallback": "sans-serif"
   }
 }, {
+  "STIX Two Math": {
+    "variants": ["regular"],
+    "fallback": "serif"
+  }
+}, {
   "STIX Two Text": {
     "variants": ["regular", "500", "600", "700", "italic", "500italic", "600italic", "700italic"],
     "fallback": "serif"
@@ -8104,8 +8159,8 @@
     "fallback": "sans-serif"
   }
 }, {
-  "Saira Stencil One": {
-    "variants": ["regular"],
+  "Saira Stencil": {
+    "variants": ["100", "200", "300", "regular", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
     "fallback": "sans-serif"
   }
 }, {
@@ -8741,6 +8796,11 @@
 }, {
   "Strait": {
     "variants": ["regular"],
+    "fallback": "sans-serif"
+  }
+}, {
+  "Strichpunkt Sans": {
+    "variants": ["regular", "500", "600", "700", "800", "900"],
     "fallback": "sans-serif"
   }
 }, {
@@ -9567,6 +9627,16 @@
   "Yusei Magic": {
     "variants": ["regular"],
     "fallback": "sans-serif"
+  }
+}, {
+  "Yuyu": {
+    "variants": ["regular"],
+    "fallback": "cursive"
+  }
+}, {
+  "Yuyu Short": {
+    "variants": ["regular"],
+    "fallback": "cursive"
   }
 }, {
   "ZCOOL KuaiLe": {
